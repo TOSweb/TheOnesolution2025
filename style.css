@@ -1636,7 +1636,7 @@ footer{
     height: 100%;
 }
 .case-study-section h1{
-    color:var(--violvet);
+    color:var(--light-green);
     margin-bottom: 2%;
     margin-top: 40px;
 }
@@ -1650,13 +1650,13 @@ footer{
 .case-study-container h3{
     margin-block: 20px;
     margin-top: 35px;
-    color: var(--violvet);
+    color: var(--light-green);
     text-align: center;
     font-size: 1.8rem;
 }
 .case-study-container h4{
     font-size: 1.3rem;
-    color: var(--violvet);
+    color: var(--light-green);
     margin-block: 20px;
     margin-top: 35px;
     
@@ -1672,10 +1672,10 @@ footer{
     list-style: disc;
 }
 .case-study-list li::marker{
-    color: var(--violvet);
+    color: var(--light-green);
 }
 .highlight{
-    color: var(--violvet);
+    color: var(--light-green);
     font-weight: 600;
     font-size: 1.1rem;
 }
@@ -1694,4 +1694,20 @@ footer{
 .about-content{
     text-align: center;
     width: 100%;
+}
+.project-hero-img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.project-hero-img picture img{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    object-position: center;
 }

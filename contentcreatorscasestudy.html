@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preload" href="style.css" as="style" />
+    <link rel="preload" href="index.js" as="script" />
+    <link rel="stylesheet" href="style.css">
+    <title>The One Solution – High-Performance Website Development Experts</title>
+    <link rel="icon" type="image/x-icon" href="/assets/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="title" content="The One Solution: Website Development, Digital Marketing, Branding & SEO Services">
+    <link
+    rel="preload"
+    href="/assets/logo.svg"
+    as="image"/>
+    <style>html {
+        scroll-behavior: smooth;
+    }
+    :root{
+        --bg-color:#FFEFD6;
+        --white-font:#FFFFFF;
+        --orange-font:#DD7F24;
+        --red: #FF1919;
+        --black-font:black;
+        --black:black;
+        --gray-font:#5d5d5d;
+        --bg-gredient: linear-gradient(90.29deg, #66D4FF -2515.37%, #C0FFAE -1709.97%, #FFB0B0 -1069.49%, #FFF4B0 -415.6%, #FFD9B0 533.07%);
+    
+        --bg-gredient1: linear-gradient(112deg, rgba(102,212,255,1) 9%, rgba(192,255,174,1) 28%, rgba(255,176,176,1) 54%, rgba(255,244,176,1) 81%, rgba(255,217,176,1) 99%);
+        --primary-color:#C0FFAE;
+        --violvet:#E2BAFF;
+    
+    
+        --blue1:#045098;
+        --blue2:#0878FF;
+        --blue-bg:#D9F2FF;
+        --btn-green:#518F5D;
+        --green-shade:#386A42;
+        --light-green:#D9FFE1;
+    }
+    * {
+        box-sizing: border-box;
+        font-family: "Lexend", sans-serif;
+    
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: #111111;
+    }
+    
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    
+    
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p {
+        margin: 0;
+    }
+    
+    ul,
+    li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    
+    
+    
+    .container {
+        /* max-width: 1140px; */
+        margin-inline: auto;
+        width: 90%;
+    }
+    
+    
+    @media(max-width: 576px) {
+        .container {
+            max-width: 540px;
+        }
+    }
+    
+    @media(min-width: 768px) {
+        .container {
+            max-width: 720px;
+        }
+    }
+    
+    @media(min-width: 992px) {
+        .container {
+            max-width: 960px;
+        }
+    }
+    
+    @media(min-width: 1200px) {
+        .container {
+            max-width: 1140px;
+        }
+    }
+    @media (min-width:1300px) {
+        .container{
+            max-width: 1240px;
+        }
+    }
+    .heading{
+        color: var(--orange-font);
+        margin-bottom: 30px;
+        font-size: 3rem;
+    }
+    @media (max-width:768px) {
+        .heading{
+            font-size: 2.3rem;
+        }
+    }
+    .primary-btn{
+        height: 40px;
+        width: fit-content;
+        padding-inline: 40px;
+        display: flex;
+        align-items: center;
+        margin-inline: auto;
+        font-size: initial;
+        background-color: var(--primary-color);
+        color: var(--black-font);
+        font-weight: 600;
+        border:2px solid transparent;
+        transition: .3s ease;
+    }
+    .primary-btn:hover{
+        border:2px solid var(--primary-color);
+        background-color: transparent;
+        color: var(--primary-color);
+    }
+    .secondary-btn{
+        background-color: var(--blue-bg);
+        border-radius: 20px;
+        border: 1px solid transparent;
+        height: 40px;
+        font-size: initial;
+        color: var(--blue1);
+        padding-inline: 20px;
+        margin-inline: 20px;
+        transition: .3s ease;
+    
+    }
+    .secondary-btn:hover{
+        background-color: var(--white-font);
+        border-color: var(--blue1);
+    }
+    /* .css-selector {
+        background: linear-gradient(270deg, #66d4ff, #c0ffae, #ffb0b0, #fff4b0, #ffd9b0);
+        background-size: 1000% 1000%;
+    
+        -webkit-animation: AnimationName 3s ease infinite;
+        -moz-animation: AnimationName 3s ease infinite;
+        animation: AnimationName 3s ease infinite;
+    } */
+     .gradient-bg{
+        background-color:hsla(0,0%,80%,1);
+        background-image:
+        radial-gradient(at 0% 0%, hsla(195,100%,73%,0.86) 0px, transparent 50%),
+        radial-gradient(at 0% 99%, hsla(105,100%,86%,0.87) 0px, transparent 50%),
+        radial-gradient(at 49% 1%, hsla(0,92%,74%,1) 0px, transparent 50%),
+        radial-gradient(at 100% 6%, hsla(48,93%,80%,1) 0px, transparent 50%),
+        radial-gradient(at 100% 99%, hsla(25,100%,81%,1) 0px, transparent 50%),
+        radial-gradient(at 51% 99%, hsla(266,83%,60%,1) 0px, transparent 50%),
+        radial-gradient(at 44% 31%, hsla(343,100%,76%,1) 0px, transparent 50%);
+        background-size: 150% 150%;
+        animation: my_animation 10s ease infinite;
+     }
+    
+    
+    
+    @keyframes my_animation {
+        0% {
+            background-position: 0% 0%;
+        }
+        25% {
+            background-position: 100% 0%;
+        }
+        50% {
+            background-position: 100% 100%;
+        }
+        75% {
+            background-position: 0% 100%;
+        }
+        100% {
+            background-position: 0% 0%;
+        }
+    }
+    /* navbar section */
+    .navbar-section {
+        display: flex;
+        list-style: none;
+        color: var(--white-font);
+        font-weight: 600;
+        padding: 10px 25px;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        /* font-weight: 700; */
+        text-transform: capitalize;
+        background-color: var(--black);
+        z-index: 10;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+    
+    
+    .logo img {
+        height: auto;
+        width: 50px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .logo{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .menu-icon {
+        display: none;
+        width: 25px;
+    }
+    .menu-icon img, .menu-close-icon img{   
+        width: 100%;
+        height: auto;
+    }
+    .menu-close-icon {
+        display: none;
+        max-width: 40px;
+    
+    }
+    
+    .nav-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 50%;
+        transition: 0.3s ease-out;
+    }
+    
+    .nav-container li {
+        margin-left: 10px;
+    }
+    
+    @media screen and (max-width: 1024px) {
+        .navbar-section {
+            padding: 10px;
+            height: 70px;
+        }
+    
+        .menu-icon {
+            display: block;
+        }
+    }
+    
+    .nav-container li > a {
+       padding-bottom: 10px;
+       font-weight: 400;
+    }
+    
+    .nav-container li a,
+    .nav-container li a:after,
+    .nav-container li a:before {
+        transition: all .5s;
+    }
+    
+    .nav-container li a {
+        position: relative;
+    }
+    
+    .nav-container li a:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 0%;
+        content: '.';
+        color: transparent;
+        background: var(--gray-font);
+        height: 1px;
+    }
+    
+    .nav-container li a:hover:after {
+        width: 100%;
+    }
+    
+    @media screen and (max-width: 1024px) {
+    
+        .expanded {
+            width: 50% !important;
+            padding: 10px;
+        }
+    
+        #topnav {
+            width: 0%;
+            transition: width 0.5s ease;
+            overflow: hidden;
+            /* position: relative; */
+            display: block;
+            position: fixed;
+            /* padding: 10px; */
+            z-index: 2;
+            right: 0;
+            top: 0;
+            min-height: 100vh;
+            overflow-y: scroll;
+            background: var(--black);
+            color: var(--white-font);
+            transition: width 0.3s ease;
+        }
+    
+        .nav-container.responsive .menu-close-icon {
+            position: absolute;
+            top: 0;
+        }
+    
+        .nav-container li a::after {
+            background: none;
+        }
+    
+        .nav-container li {
+            float: none;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+    }
+    @media (max-width:500px) {
+        .expanded{
+            width: 75% ! important;
+        }
+    }
+    /* navbar end */
+    
+    /* her0-section */
+    
+    .hero-section{
+        position: relative;
+        height: calc(100vh - 100px);
+    
+        /* background-image: url(./assets/homepage-hero-bg.png); */
+        background-position: center;
+        background-repeat: repeat;
+        background-size: cover;
+       
+        width: 100%;
+        min-height: 400px;
+        overflow: hidden;
+    }
+    
+    
+    
+    .hero-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        height: 100%;
+    }
+    
+    
+    
+    
+    .hero-content{
+        
+        color: var(--black-font);
+    }
+    .hero-content h1{
+        font-size: 4rem;
+        line-height: 80px;
+        margin-block: 20px;
+    
+        text-align: center;
+    }
+    .hero-content h1 span{
+        color: var(--blue1);
+    }
+    .hero-content p{
+        font-weight: 700;
+        text-align: center;
+        margin-bottom:30px;
+        letter-spacing: 3px;
+        font-size: 3rem;
+        line-height: 47.28px;
+        
+        color: white;
+        
+    }
+    @media (max-width:1200px) {
+        .hero-content h1{
+            font-size: 4rem;
+        }
+    }
+    @media (max-width:992px) {
+        .hero-section{
+            height: 100vh;
+        }
+        .hero-container{
+            flex-direction: column-reverse;
+            padding-block: 30px;
+        }
+        .hero-content{
+            width: 90%;
+        }
+        .hero-container .img-wrapper{
+            width: 60%;
+        }
+        .hero-content h1{
+            font-size: 4rem;
+            line-height: 50px;
+        }
+        .hero-content p{
+            font-size: 2.5rem;
+        }
+    }
+    @media (max-width:500px) {
+        .hero-content h1{
+            font-size: 3.5rem;
+        }
+        .hero-content p{
+            font-size: 2rem;
+        }
+    }</style>
+<link async rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link async href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+<meta name="description" content="The One Solution is a full-service web agency specializing in Website Development, Digital Marketing, Branding, and Custom Software Development. We craft fast-loading, exclusive websites with responsive design, optimized SEO, and exceptional performance tailored to meet client needs across multiple industries. Contact us today for a consultation.">
+<meta name="keywords" content="Web agency, Website development, Digital marketing, Branding, Custom software development, Fast loading websites, Responsive design, Technical SEO, UI/UX design, Website deployment, eCommerce websites, Corporate websites, Portfolio websites, Consultation.">
+</head>
+
+<body>
+    <nav id="navbar">
+        <navbar class="navbar-section">
+
+            <div class="logo">
+                <a href="index.html">
+                    <img src="./assets/logo.svg" alt="The-One-Solution-Logo">
+                </a>
+                
+            </div>
+
+            <li class="menu-icon">
+                <img src="./assets/menu.svg" onclick="toggleFunction()" alt="menu-icon">
+            </li>
+            <ul class="nav-container" id="topnav">
+                <li class="menu-close-icon">
+                    <img src="./assets/close.svg" onclick="toggleFunction()" alt="menu-icon">
+                </li>
+                <li>
+                    <a href="./index.html">Home</a>
+                </li>
+                <li>
+                    <a href="index.html">Web Development</a>
+                </li>
+                <li>
+                    <a href="digitalmarketing.html">Digtial Marketing</a>
+                </li>
+                <li>
+                    <a href="branding.html">Branding</a>
+                </li>
+                <li>
+                    <a href="#contact">contact</a>
+                </li>
+            </ul>
+        </navbar>
+    </nav>
+    <section class="hero-section ">
+        <div class="project-hero-img ">
+            <picture>
+                <source media="(min-width: 1150px) and (max-width: 1439px)" srcset="assets/vivin-computer.webp">
+                <source media="(min-width: 766px) and (max-width: 1149px)" srcset="assets/vivin-htab.webp">
+                <source media="(min-width: 501px) and (max-width: 765px)" srcset="assets/vivin-ltab.webp">
+                <source media="(max-width: 500px)" srcset="assets/vivin-mobile.webp">
+                <img src="assets/vivin-computer.webp" alt="vivin-engineering-and-contracting-cover">
+            </picture>
+        </div>
+    </section>
+    
+    <section class="case-study-section">
+        <div class="container case-study-container">
+            <span class="section-name">Case Studies</span>
+            <h1>Case Study: From Creation to Co-Creation – Building Strong Personal Brands
+            </h1>
+            <p class="case-study-subdetails"><strong>Client :</strong> Various Content Creators</p>
+            <p class="case-study-subdetails"><strong>Industry :</strong> Digital & Personal Branding</p>
+            <h3>Branding Beyond Just Design</h3>
+            <p>
+                At The One Solution, we don’t just create—we co-create. Every design we craft aligns with industry
+                standards, ensuring that brands not only look good but also stay consistent and impactful on the global
+                stage. A brand’s identity isn’t just about visuals; it’s about telling a compelling story. And as a
+                marketing agency, it’s our job to bring that story to life.
+            </p>
+            <h3>The Challenge</h3>
+            <p>Creators today aren’t just individuals; they’re brands in themselves. But personal branding isn’t just
+                about posting content—it’s about:</p>
+            <ul class="case-study-list">
+                <li>Building a strong, recognizable presence
+                </li>
+                <li>Engaging the right audience
+                </li>
+                <li>Maintaining consistency across platforms</li>
+            </ul>
+            <p>Our goal? To help creators establish a powerful digital presence that accurately reflects their vision
+                and values while keeping their audience engaged.</p>
+            <h3>Our Strategy</h3>
+            <h4>Profile Optimization</h4>
+            <ul class="case-study-list">
+                <li>We worked closely with creators to enhance their digital presence, ensuring their branding was
+                    consistent, engaging, and professional.</li>
+                <li>
+                    Every aspect of their profile—from bio to content strategy—was refined for maximum impact.
+                </li>
+            </ul>
+            <h4>Content Storytelling:</h4>
+            <ul class="case-study-list">
+                <li>Rather than just pushing out content, we focused on knitting an engaging and interactive brand
+                    story.
+                </li>
+                <li>This helped creators connect deeply with their audience, making their presence more than just
+                    another profile on the platform.</li>
+            </ul>
+            <h4>Audience Growth & Engagement:</h4>
+            <ul class="case-study-list">
+                <li>We implemented strategies that didn’t just increase numbers but built a real community around their
+                    brand.</li>
+                <li>
+                    Our approach ensured that every post, campaign, and interaction felt organic and authentic, leading
+                    to higher engagement and long-term growth.
+
+                </li>
+            </ul>
+            <h4>The Results? A Game Changer.</h4>
+            <ul class="case-study-list">
+                <li><strong>Increased visibility -</strong> Our branding efforts gave creators a strong digital footprint.</li>
+                <li><strong>Higher engagement -</strong> More meaningful connections and interactions with their audience.</li>
+                <li><strong>Stronger brand consistency -</strong> A well-defined, cohesive identity across platforms.</li>
+            </ul>
+            <h4>Final Thoughts</h4>
+            <p>
+                This wasn’t just about marketing—it was about empowering creators to take their personal brand to the next level. By co-creating with them, we ensured that their story wasn’t just told but felt by their audience.
+            </p>
+            <p>
+                Want to build your personal brand and make an impact? Let’s create something amazing together!
+            </p>
+            <h1>Case Study: Turning Digital Clicks into Real-World Impact</h1>
+            <p class="case-study-subdetails"><strong>Client :</strong> Multiple Businesses
+            </p>
+            <p class="case-study-subdetails"><strong>Industry :</strong>Retail & Events</p>
+            <h4>Not Just PPC—Optimized PPC</h4>
+            <p>
+                Anyone can run a pay-per-click (PPC) campaign. But running one efficiently? That’s where we come in. At The One Solution, we don’t just focus on clicks; we focus on making sure each click costs less over time.
+            </p>
+            <p>
+                For example, we’ve taken campaigns from ₹50 per click down to ₹0.50 per click—that’s a 100x improvement in efficiency. And that’s just one part of the story.
+            </p>
+            <h4>The Grand Opening Success</h4>
+            <p>
+                One of our standout projects was the launch of a client’s new outlet. The goal was clear: <span class="highlight">maximum reach, minimum spend, and real-world footfall</span>.
+            </p>
+            <h4>Our approach: </h4>
+            <ul class="case-study-list">
+                <li><strong>Hyper-targeted ads -</strong>  Reaching the right audience at the right time.</li>
+                <li><strong>Budget Optimization -</strong> Keeping costs low while ensuring high engagement.</li>
+                <li><strong>Cross-channel promotion -</strong> Combining digital ads with offline strategies.</li>
+            </ul>
+            <h3>The results?
+            </h3>
+            <ul>
+                <li><h4 style="text-align: center;">25,000+ people reached in just 7 days
+                </h4></li>
+                <li><h4 style="text-align: center;">Spent only ₹1,500 (which means 16 people reached per rupee!)</h4></li>
+                <li><h4 style="text-align: center;">Over 2,000 people showed up for the launch event</h4></li>
+            </ul>
+            <h4>Offline Marketing That Works</h4>
+            <p>
+                Digital marketing is powerful, but sometimes, <span class="highlight">offline strategies</span> make all the difference. For another client, we built a <span class="highlight">high-impact offline strategy"></span> by using:
+            </p>
+            <ul class="case-study-list">
+                <li>Outdoor banners</li>
+                <li>Strategic hoardings in high-traffic areas</li>
+                <li>Localized marketing investments</li>
+            </ul>
+            <p>
+                These <span class="highlight">intangible yet powerful</span> strategies amplified brand presence beyond digital screens, creating real-world awareness that <span class="highlight">translated into sales and customer loyalty</span>.
+            </p>
+            <h4>Why This Matters</h4>
+            <p>
+                We believe in <span class="highlight">blending digital with real-world impact</span>, making sure every marketing rupee is <span class="highlight">working smarter, not harder</span>. Whether it’s cutting PPC costs, driving thousands of people to an event, or ensuring offline brand presence, we <span class="highlight">optimize for results</span>—and we deliver.
+            </p>
+            <p>Want marketing that doesn’t just get clicks but <span class="highlight">creates real impact?</span> Let’s make it happen.</p>
+
+        </div>
+    </section>
+   
+   
+  
+    
+   <footer id="contact">
+    <div class="footer-container ">
+        <ul class="footer-wrapper">
+            <li class="footer-item footer-about">
+                <img loading="lazy" src="./assets/logo.svg" alt="The-One-Solution-Logo">
+              
+            </li>
+
+            <li class="footer-item">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="tel:+918088519842">+91 8088519842</a></li>
+                    <li><a href="tel:+918792926999">+91 8792926999</a></li>  
+                    <li><a href="mailto:hello@theonesolution.co.in">hello@theonesolution.co.in</a></li>
+                    <li><a href="mailto:hello@theonesolution.co.in">thanuj@theonesolution.co.in</a></li>
+                    <li><a href="mailto:hello@theonesolution.co.in">nishchal@theonesolution.co.in</a></li>
+                    <!-- <li><a href="">Gallery</a></li> -->
+                </ul>
+            </li>
+            <li class="footer-item">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <!-- <li><a href="./index.html#projects">Projects</a></li>
+                    <li><a href="./index.html#Testimonials">Testimonials</a></li> -->
+                    <!-- <li><a href="./index.html#collaboration">Collaborations</a></li> -->
+                    <li><a href="#contact">Contact</a></li>
+            
+                </ul>
+            </li>
+
+          
+            <!-- <li class="footer-item newsletter"> 
+                <h3>Map Location</h3>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3898.1577266739505!2d76.65259997493195!3d12.30516298795238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf701103f9a1f9%3A0xc37fbae2a124da0d!2sMysore%20Palace!5e0!3m2!1sen!2sin!4v1730793834739!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                   
+            </li> -->
+           
+        </ul>
+    </div>
+</footer>
+<div class="copyright-container gradient-bg">
+    <p class="container">
+        Copyright © 2024-25 The One Solution. All rights reserved. Design and Developed by The One Solution
+    </p> 
+</div>
+    <script src="index.js"></script>
+    <script type="application/ld+json">
+        
+    </script>
+</body>
+</html>
