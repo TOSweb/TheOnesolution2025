@@ -1711,3 +1711,6 @@ footer{
     object-fit: cover;
     object-position: center;
 }
+.case-study-container ul h4{
+    margin-block: 10px;
+}
