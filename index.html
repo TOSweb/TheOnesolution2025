@@ -1,823 +1,666 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" href="style.css" as="style" />
-    <link rel="preload" href="index.js" as="script" />
-    <link rel="stylesheet" href="style.css">
-    <title>The One Solution – High-Performance Website Development Experts</title>
-    <link rel="icon" type="image/x-icon" href="/assets/logo.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <meta name="title" content="The One Solution: Website Development, Digital Marketing, Branding & SEO Services">
-    <link
-    rel="preload"
-    href="/assets/logo.svg"
-    as="image"/>
-    <style>html {
-        scroll-behavior: smooth;
-    }
-    :root{
-        --bg-color:#FFEFD6;
-        --white-font:#FFFFFF;
-        --orange-font:#DD7F24;
-        --red: #FF1919;
-        --black-font:black;
-        --black:black;
-        --gray-font:#5d5d5d;
-        --bg-gredient: linear-gradient(90.29deg, #66D4FF -2515.37%, #C0FFAE -1709.97%, #FFB0B0 -1069.49%, #FFF4B0 -415.6%, #FFD9B0 533.07%);
-    
-        --bg-gredient1: linear-gradient(112deg, rgba(102,212,255,1) 9%, rgba(192,255,174,1) 28%, rgba(255,176,176,1) 54%, rgba(255,244,176,1) 81%, rgba(255,217,176,1) 99%);
-        --primary-color:#C0FFAE;
-        --violvet:#E2BAFF;
-    
-    
-        --blue1:#045098;
-        --blue2:#0878FF;
-        --blue-bg:#D9F2FF;
-        --btn-green:#518F5D;
-        --green-shade:#386A42;
-        --light-green:#D9FFE1;
-    }
-    * {
-        box-sizing: border-box;
-        font-family: "Lexend", sans-serif;
-    
-    }
-    body {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        background: #111111;
-    }
-    
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-    
-    
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p {
-        margin: 0;
-    }
-    
-    ul,
-    li {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-    }
-    
-    
-    
-    .container {
-        /* max-width: 1140px; */
-        margin-inline: auto;
-        width: 90%;
-    }
-    
-    
-    @media(max-width: 576px) {
-        .container {
-            max-width: 540px;
+    <title>DigitalPro - Digital Marketing & Website Services</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#ffffff',
+                        foreground: 'oklch(0.145 0 0)',
+                        card: '#ffffff',
+                        'card-foreground': 'oklch(0.145 0 0)',
+                        primary: '#030213',
+                        'primary-foreground': 'oklch(1 0 0)',
+                        secondary: 'oklch(0.95 0.0058 264.53)',
+                        'secondary-foreground': '#030213',
+                        muted: '#ececf0',
+                        'muted-foreground': '#717182',
+                        accent: '#e9ebef',
+                        'accent-foreground': '#030213',
+                        destructive: '#d4183d',
+                        'destructive-foreground': '#ffffff',
+                        border: 'rgba(0, 0, 0, 0.1)',
+                        input: 'transparent',
+                        'input-background': '#f3f3f5',
+                        ring: 'oklch(0.708 0 0)',
+                    },
+                    borderRadius: {
+                        lg: '0.625rem',
+                        md: 'calc(0.625rem - 2px)',
+                        sm: 'calc(0.625rem - 4px)',
+                    }
+                }
+            }
         }
-    }
-    
-    @media(min-width: 768px) {
-        .container {
-            max-width: 720px;
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
         }
-    }
-    
-    @media(min-width: 992px) {
-        .container {
-            max-width: 960px;
+        .shadow-xl {
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-    }
-    
-    @media(min-width: 1200px) {
-        .container {
-            max-width: 1140px;
+        .transition-all {
+            transition: all 0.3s ease;
         }
-    }
-    @media (min-width:1300px) {
-        .container{
-            max-width: 1240px;
+        .hover-lift:hover {
+            transform: translateY(-2px);
         }
-    }
-    .heading{
-        color: var(--orange-font);
-        margin-bottom: 30px;
-        font-size: 3rem;
-    }
-    @media (max-width:768px) {
-        .heading{
-            font-size: 2.3rem;
+        .star-filled {
+            color: #fbbf24;
+            fill: currentColor;
         }
-    }
-    .primary-btn{
-        height: 40px;
-        width: fit-content;
-        padding-inline: 40px;
-        display: flex;
-        align-items: center;
-        margin-inline: auto;
-        font-size: initial;
-        background-color: var(--primary-color);
-        color: var(--black-font);
-        font-weight: 600;
-        border:2px solid transparent;
-        transition: .3s ease;
-    }
-    .primary-btn:hover{
-        border:2px solid var(--primary-color);
-        background-color: transparent;
-        color: var(--primary-color);
-    }
-    .secondary-btn{
-        background-color: var(--blue-bg);
-        border-radius: 20px;
-        border: 1px solid transparent;
-        height: 40px;
-        font-size: initial;
-        color: var(--blue1);
-        padding-inline: 20px;
-        margin-inline: 20px;
-        transition: .3s ease;
-    
-    }
-    .secondary-btn:hover{
-        background-color: var(--white-font);
-        border-color: var(--blue1);
-    }
-    /* .css-selector {
-        background: linear-gradient(270deg, #66d4ff, #c0ffae, #ffb0b0, #fff4b0, #ffd9b0);
-        background-size: 1000% 1000%;
-    
-        -webkit-animation: AnimationName 3s ease infinite;
-        -moz-animation: AnimationName 3s ease infinite;
-        animation: AnimationName 3s ease infinite;
-    } */
-     .gradient-bg{
-        background-color:hsla(0,0%,80%,1);
-        background-image:
-        radial-gradient(at 0% 0%, hsla(195,100%,73%,0.86) 0px, transparent 50%),
-        radial-gradient(at 0% 99%, hsla(105,100%,86%,0.87) 0px, transparent 50%),
-        radial-gradient(at 49% 1%, hsla(0,92%,74%,1) 0px, transparent 50%),
-        radial-gradient(at 100% 6%, hsla(48,93%,80%,1) 0px, transparent 50%),
-        radial-gradient(at 100% 99%, hsla(25,100%,81%,1) 0px, transparent 50%),
-        radial-gradient(at 51% 99%, hsla(266,83%,60%,1) 0px, transparent 50%),
-        radial-gradient(at 44% 31%, hsla(343,100%,76%,1) 0px, transparent 50%);
-        background-size: 150% 150%;
-        animation: my_animation 10s ease infinite;
-     }
-    
-    
-    
-    @keyframes my_animation {
-        0% {
-            background-position: 0% 0%;
-        }
-        25% {
-            background-position: 100% 0%;
-        }
-        50% {
-            background-position: 100% 100%;
-        }
-        75% {
-            background-position: 0% 100%;
-        }
-        100% {
-            background-position: 0% 0%;
-        }
-    }
-    /* navbar section */
-    .navbar-section {
-        display: flex;
-        list-style: none;
-        color: var(--white-font);
-        font-weight: 600;
-        padding: 10px 25px;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        /* font-weight: 700; */
-        text-transform: capitalize;
-        background-color: var(--black);
-        z-index: 10;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    }
-    
-    
-    .logo img {
-        height: auto;
-        width: 50px;
-        object-fit: cover;
-        object-position: center;
-    }
-    .logo{
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .menu-icon {
-        display: none;
-        width: 25px;
-    }
-    .menu-icon img, .menu-close-icon img{   
-        width: 100%;
-        height: auto;
-    }
-    .menu-close-icon {
-        display: none;
-        max-width: 40px;
-    
-    }
-    
-    .nav-container {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 50%;
-        transition: 0.3s ease-out;
-    }
-    
-    .nav-container li {
-        margin-left: 10px;
-    }
-    
-    @media screen and (max-width: 1024px) {
-        .navbar-section {
-            padding: 10px;
-            height: 70px;
-        }
-    
-        .menu-icon {
-            display: block;
-        }
-    }
-    
-    .nav-container li > a {
-       padding-bottom: 10px;
-       font-weight: 400;
-    }
-    
-    .nav-container li a,
-    .nav-container li a:after,
-    .nav-container li a:before {
-        transition: all .5s;
-    }
-    
-    .nav-container li a {
-        position: relative;
-    }
-    
-    .nav-container li a:after {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 0%;
-        content: '.';
-        color: transparent;
-        background: var(--gray-font);
-        height: 1px;
-    }
-    
-    .nav-container li a:hover:after {
-        width: 100%;
-    }
-    
-    @media screen and (max-width: 1024px) {
-    
-        .expanded {
-            width: 50% !important;
-            padding: 10px;
-        }
-    
-        #topnav {
-            width: 0%;
-            transition: width 0.5s ease;
-            overflow: hidden;
-            /* position: relative; */
-            display: block;
-            position: fixed;
-            /* padding: 10px; */
-            z-index: 2;
-            right: 0;
-            top: 0;
-            min-height: 100vh;
-            overflow-y: scroll;
-            background: var(--black);
-            color: var(--white-font);
-            transition: width 0.3s ease;
-        }
-    
-        .nav-container.responsive .menu-close-icon {
-            position: absolute;
-            top: 0;
-        }
-    
-        .nav-container li a::after {
-            background: none;
-        }
-    
-        .nav-container li {
-            float: none;
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-    }
-    @media (max-width:500px) {
-        .expanded{
-            width: 75% ! important;
-        }
-    }
-    /* navbar end */
-    
-    /* her0-section */
-    
-    .hero-section{
-        position: relative;
-        height: calc(100vh - 100px);
-    
-        /* background-image: url(./assets/homepage-hero-bg.png); */
-       
-        width: 100%;
-        min-height: 400px;
-        overflow: hidden;
-    }
-    
-    
-    
-    .hero-container{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        height: 100%;
-    }
-    
-    
-    
-    
-    .hero-content{
-        
-        color: var(--black-font);
-    }
-    .hero-content h1{
-        font-size: 4rem;
-        line-height: 80px;
-        margin-block: 20px;
-    
-        text-align: center;
-    }
-    .hero-content h1 span{
-        color: var(--blue1);
-    }
-    .hero-content p{
-        font-weight: 700;
-        text-align: center;
-        margin-bottom:30px;
-        letter-spacing: 3px;
-        font-size: 3rem;
-        line-height: 47.28px;
-        
-        color: white;
-        
-    }
-    @media (max-width:1200px) {
-        .hero-content h1{
-            font-size: 4rem;
-        }
-    }
-    @media (max-width:992px) {
-        .hero-section{
-            height: 100vh;
-        }
-        .hero-container{
-            flex-direction: column-reverse;
-            padding-block: 30px;
-        }
-        .hero-content{
-            width: 90%;
-        }
-        .hero-container .img-wrapper{
-            width: 60%;
-        }
-        .hero-content h1{
-            font-size: 4rem;
-            line-height: 50px;
-        }
-        .hero-content p{
-            font-size: 2.5rem;
-        }
-    }
-    @media (max-width:500px) {
-        .hero-content h1{
-            font-size: 3.5rem;
-        }
-        .hero-content p{
-            font-size: 2rem;
-        }
-    }</style>
-<link async rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link async href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
-<meta name="description" content="The One Solution is a full-service web agency specializing in Website Development, Digital Marketing, Branding, and Custom Software Development. We craft fast-loading, exclusive websites with responsive design, optimized SEO, and exceptional performance tailored to meet client needs across multiple industries. Contact us today for a consultation.">
-<meta name="keywords" content="Web agency, Website development, Digital marketing, Branding, Custom software development, Fast loading websites, Responsive design, Technical SEO, UI/UX design, Website deployment, eCommerce websites, Corporate websites, Portfolio websites, Consultation.">
+    </style>
 </head>
-
-<body>
-    <nav id="navbar">
-        <navbar class="navbar-section">
-
-            <div class="logo">
-                <a href="index.html">
-                    <img src="./assets/logo.svg" alt="The-One-Solution-Logo">
-                </a>
+<body class="min-h-screen bg-background text-foreground">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <span class="text-2xl font-medium text-primary tracking-tight">DigitalPro</span>
+                    </div>
+                </div>
                 
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#services" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Services</a>
+                        <a href="#about" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">About</a>
+                        <a href="#testimonials" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Testimonials</a>
+                        <a href="#contact" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Contact</a>
+                    </div>
+                </nav>
+
+                <div class="hidden md:block">
+                    <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-primary hover:bg-gray-100">
+                        <svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
-            <li class="menu-icon">
-                <img src="./assets/menu.svg" onclick="toggleFunction()" alt="menu-icon">
-            </li>
-            <ul class="nav-container" id="topnav">
-                <li class="menu-close-icon">
-                    <img src="./assets/close.svg" onclick="toggleFunction()" alt="menu-icon">
-                </li>
-                <li>
-                    <a href="./index.html">Home</a>
-                </li>
-                <li>
-                    <a href="index.html">Web Development</a>
-                </li>
-                <li>
-                    <a href="digitalmarketing.html">Digtial Marketing</a>
-                </li>
-                <li>
-                    <a href="branding.html">Branding</a>
-                </li>
-                <li>
-                    <a href="#contact">contact</a>
-                </li>
-            
-
-                <!-- <li><a href="#why-us"></a></li> -->
-                <!-- <li><a href="#contact">Locations</a></li> -->
-            </ul>
-        </navbar>
-    </nav>
-    <section class="hero-section gradient-bg">
-        <div class="hero-container container">
-            <div class="hero-content ">
-                <h1>Fast-Loading Websites, Tailored for Performance and Precision</h1>
-                <!-- <p>Where Imagination comes to Life</p> -->
-                <a href="#services" class="primary-btn">Explore</a>
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+                    <a href="#services" class="block px-3 py-2 text-gray-600 hover:text-primary">Services</a>
+                    <a href="#about" class="block px-3 py-2 text-gray-600 hover:text-primary">About</a>
+                    <a href="#testimonials" class="block px-3 py-2 text-gray-600 hover:text-primary">Testimonials</a>
+                    <a href="#contact" class="block px-3 py-2 text-gray-600 hover:text-primary">Contact</a>
+                    <div class="px-3 py-2">
+                        <button class="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
             </div>
-       
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-gray-900 mb-6">
+                        Transform Your 
+                        <span class="text-primary">Digital Presence</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Elevate your business with our comprehensive digital marketing solutions. 
+                        From SEO to social media, we help you reach your target audience and drive 
+                        measurable results.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                        <button class="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors text-base flex items-center justify-center">
+                            Start Your Journey
+                            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                        <button class="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-50 transition-colors text-base flex items-center justify-center">
+                            <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v3a3 3 0 003 3z" />
+                            </svg>
+                            Watch Demo
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div>
+                            <div class="text-3xl font-medium text-primary mb-2">250+</div>
+                            <div class="text-gray-600">Happy Clients</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-medium text-primary mb-2">98%</div>
+                            <div class="text-gray-600">Success Rate</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-medium text-primary mb-2">5+</div>
+                            <div class="text-gray-600">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:pl-8">
+                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&h=400&fit=crop" 
+                         alt="Team working on digital marketing strategy" 
+                         class="rounded-2xl shadow-2xl w-full h-96 object-cover">
+                </div>
+            </div>
         </div>
     </section>
-    <section class="about-section " id="about">
-        <div class="about-container container">
-            <div class="about-content scroll-element js-scroll slide-right">
-                
-                <span class="section-name">The One Solution as Web Agency</span>
-                <p>
-                    
-The One Solution excels in crafting fast-loading, high-performance websites tailored to your needs. We specialize in creating domain-specific designs that engage your target audience and deliver exceptional results. Known for speed and precision, we ensure your website stands out and drives success. Let us transform your vision into a high-performing reality.                     
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-medium text-gray-900 mb-4">
+                    Our Digital Marketing Services
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    We offer comprehensive digital marketing solutions tailored to help your business 
+                    grow and succeed in the digital landscape.
                 </p>
-                <a href="#services" class="primary-btn">Explore</a>
-              
             </div>
-           
-        </div>
-    </section>
-    <section id="services" class="services-section">
-        <div class="container services-container">
-            <span class="section-name">Services we offer</span>
-            <div class="section-subtitle">Design and Development</div>
-            <!-- <div>
-                <button class="primary-btn "><a href="#about">Explore</a></button>
-                
-            </div> -->
-            <div class="services-wrapper">
-                <div class="service">
-                    <div class="service-img">
-                        <img loading="lazy" src="./assets/service1.svg" alt="UI/UX_Design_Icon">
-                    </div>
-                    <h4 class="service-name">UI / UX Design</h4>
-                    <p>
-                        We have a world class team which can design a website to wow you and perform the best on search and ads. We have experience in developing websites across various industries with different needs. We try to minimize touchpoints and maximize efficiency.
-                    </p>
-                    <a href="tel:+918088519842" class="primary-btn">Contact Us</a>
-                </div>
-                <div class="service">
-                    <div class="service-img">
-                        <img loading="lazy" src="./assets/service2.svg" alt="Development_Icon">
-                    </div>
-                    <h4 class="service-name">Developement</h4>
-                    <p>
-                        We develop the best and fastest loading websites, we incorporate all the necessary features in the website to make it technically efficient and have faster loading speeds.
-                    </p>
-                    <a href="tel:+918088519842" class="primary-btn">Contact Us</a>
-                </div>
-                <div class="service">
-                    <div class="service-img">
-                        <img loading="lazy" src="./assets/service3.svg" alt="Deployement_Icon">
-                    </div>
-                    <h4 class="service-name">Deployement</h4>
-                    <p>
-                        We partner with server providers and we have experts in deployment fields who are experts in working with multiple established service providers. 
-                    </p>
-                    <a href="tel:+918088519842" class="primary-btn">Contact Us</a>
-                </div>
-              
-             
-            </div>
-        </div>
-    </section>
-    <section class="types-section">
-        <div class="container">
-            <span class="section-name">Types of Websites we work on </span>
-            <p >
-                Every business is unique, and a well-crafted, domain-specific website can make all the difference. By focusing on industry-specific needs and audience preferences, these websites enhance online visibility and drive valuable leads. Whether it’s retail, healthcare, education, or any other sector, our designs are optimized for speed, performance, and engagement, ensuring your business thrives in the digital space.
-            </p>
-        </div>
-    </section>
-    <section class="contact-section gradient-bg">
-        <div class="container">
-            <h2>Start Your Project Today</h2>
-            <a href="https://calendar.app.google/6N6Gp6BXWgHvbkyx7" class="primary-btn">Consult now</a>
-    </section>
-    <section class="commitment-section">
-        <div class="container commitment-container">
-            <span class="section-name">Our commitment towords you</span>
-           <div class="commitment-wrapper">
-            <div class="commitment-content">
-                <ul>
-                    <li>Exclusive Designs</li>
-                    <li>Fast Loading webpages</li>
-                    <li>Responsive Designs upto 4 types of devices</li>
-                    <li>Strong Technical SEO</li>
-                    <li>Superior Website Performance</li>
-                </ul>
-             </div>
-             <div class="commitment-img">
-                <img loading="lazy" src="./assets/handshake.svg" alt="Commitment_icon">
-             </div> 
-           </div>
-        </div>
-    </section>
-   <section  class="steps-section">
-        <div class="container steps-container scroll-element js-scroll slide-right">
-            <span class="section-name">
-                Approach to your project <br>
-                to make your life easier
-            </span>
-            <div class="steps-wrapper">
-                <div class="steps">
-                    <img loading="lazy" src="./assets/step1.svg" width="40" alt="Requirements_icon">
-                    <h4>Requirements <br>
-                        Gathering</h4>
-                </div>
-                <div class="steps">
-                    <img loading="lazy" src="./assets/step2.svg" width="100" alt="Prototyping_icon">
-                    <h4>Prototyping of  <br>
-                        the website</h4>
-                </div>
-                <div class="steps">
-                    <img loading="lazy" src="./assets/step3.svg" width="170" alt="Revisions_icon">
-                    <h4>Revisions or changes <br>
-                        in design</h4>
-                </div>
-                <div class="steps">
-                    <img loading="lazy" src="./assets/step4.svg" width="100" alt="Deployement_Icon">
-                    <h4>Development</h4>
-                </div>
-                <div class="steps">
-                    <img loading="lazy" src="./assets/step5.svg" width="70" alt="Deployement_Icon">
-                    <h4>Deployement</h4>
-                </div>
-            </div>
-        </div>
-        <div class="steps-btn-container container">
-            <a href="tel:+918088519842" class="primary-btn "> Call Now </a>
-            <a href="mailto:hello@theonesolution.co.in" class="primary-btn "> Mail Us </a>
-            <!-- <a href="#" class="primary-btn "> Whatsapp</a> -->
-        </div>
-   </section>
-    <section class="projects-section" id="projects">
-        <div class="container scroll-element js-scroll slide-left">
-            <span class="section-name ">Projects</span>
-        </div>
-        <div class="projects-wrapper scroll-element js-scroll fade-in-bottom">
-            <a class="project-img-link" href="">
-                <div class="project-img scroll-element js-scroll slide-left">
-                    <picture>
-                        <source media="(min-width: 1150px) and (max-width: 1439px)" srcset="assets/pcbmatic-computer.webp">
-                        <source media="(min-width: 766px) and (max-width: 1149px)" srcset="assets/PCBmatic-project-htab.webp">
-                        <source media="(min-width: 501px) and (max-width: 765px)" srcset="assets/pcbmatic-ltab.webp">
-                        <source media="(max-width: 500px)" srcset="assets/pcbmatic-mobile.webp">
-                        <img src="assets/pcbmatic-computer.webp" alt="pcbmatic-project-cover">
-                    </picture>
-                </div>
-            </a>
-            <a class="project-img-link" href="https://thatmusiccompany.in/">
-                <div class="project-img scroll-element js-scroll slide-right" >
-                    <picture>
-                        <source media="(min-width: 1150px) and (max-width: 1439px)" srcset="assets/thatmusiccompany-computer.webp">
-                        <source media="(min-width: 766px) and (max-width: 1149px)" srcset="assets/thatmusiccompany-project-htab.webp">
-                        <source media="(min-width: 501px) and (max-width: 765px)" srcset="assets/thatmusiccompany-ltab.webp">
-                        <source media="(max-width: 500px)" srcset="assets/thatmusiccompany-mobile.webp">
-                        <img src="assets/thatmusiccompany-computer.webp" alt="thatmusiccompany-project-cover">
-                    </picture>
-                </div>
-            </a>
-            <a class="project-img-link" href="">
-                <div class="project-img scroll-element js-scroll slide-left">
-                    <picture>
-                        <source media="(min-width: 1150px) and (max-width: 1439px)" srcset="assets/eandiprominent-computer.webp">
-                        <source media="(min-width: 766px) and (max-width: 1149px)" srcset="assets/eandiprominent-htab.webp">
-                        <source media="(min-width: 501px) and (max-width: 765px)" srcset="assets/eandiprominent-ltab.webp">
-                        <source media="(max-width: 500px)" srcset="assets/eandiprominent-mobile.webp">
-                        <img src="assets/eandiprominent-computer.webp" alt="eandiprominent-project-cover">
-                    </picture>
-                </div>
-            </a>
-            <a class="project-img-link" href="">
-                <div class="project-img scroll-element js-scroll slide-right">
-                    <picture>
-                        <source media="(min-width: 1150px) and (max-width: 1439px)" srcset="assets/vivin-computer.webp">
-                        <source media="(min-width: 766px) and (max-width: 1149px)" srcset="assets/vivin-htab.webp">
-                        <source media="(min-width: 501px) and (max-width: 765px)" srcset="assets/vivin-ltab.webp">
-                        <source media="(max-width: 500px)" srcset="assets/vivin-mobile.webp">
-                        <img src="assets/vivin-computer.webp" alt="vivin-engineering-and-contracting-cover">
-                    </picture>
-                </div>
-            </a>
-            <a class="project-img-link" href="">
-                <div class="project-img scroll-element js-scroll slide-right">
-                
-                </div>
-            </a>
-            <a class="project-img-link" href="">
-                <div class="project-img scroll-element js-scroll slide-right">
-                
-                </div>
-            </a>
-            <a class="project-img-link" href="">
-                <div class="project-img scroll-element js-scroll slide-right">
-                
-                </div>
-            </a>
-            
-        </div>
-    </section>
-   
-   
-  
-    
-   <footer id="contact">
-    <div class="footer-container ">
-        <ul class="footer-wrapper">
-            <li class="footer-item footer-about">
-                <img loading="lazy" src="./assets/logo.svg" alt="The-One-Solution-Logo">
-              
-            </li>
 
-            <li class="footer-item">
-                <h3>Contact</h3>
-                <ul>
-                    <li><a href="tel:+918088519842">+91 8088519842</a></li>
-                    <li><a href="tel:+918792926999">+91 8792926999</a></li>  
-                    <li><a href="mailto:hello@theonesolution.co.in">hello@theonesolution.co.in</a></li>
-                    <li><a href="mailto:hello@theonesolution.co.in">thanuj@theonesolution.co.in</a></li>
-                    <li><a href="mailto:hello@theonesolution.co.in">nishchal@theonesolution.co.in</a></li>
-                    <!-- <li><a href="">Gallery</a></li> -->
-                </ul>
-            </li>
-            <li class="footer-item">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <!-- <li><a href="./index.html#projects">Projects</a></li>
-                    <li><a href="./index.html#Testimonials">Testimonials</a></li> -->
-                    <!-- <li><a href="./index.html#collaboration">Collaborations</a></li> -->
-                    <li><a href="#contact">Contact</a></li>
-            
-                </ul>
-            </li>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- SEO Service -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">SEO Optimization</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Boost your search rankings with our proven SEO strategies and technical expertise.
+                    </p>
+                </div>
 
-          
-            <!-- <li class="footer-item newsletter"> 
-                <h3>Map Location</h3>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3898.1577266739505!2d76.65259997493195!3d12.30516298795238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf701103f9a1f9%3A0xc37fbae2a124da0d!2sMysore%20Palace!5e0!3m2!1sen!2sin!4v1730793834739!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                   
-            </li> -->
-           
-        </ul>
-    </div>
-</footer>
-<div class="copyright-container gradient-bg">
-    <p class="container">
-        Copyright © 2024-25 The One Solution. All rights reserved. Design and Developed by The One Solution
-    </p> 
-</div>
-    <script src="index.js"></script>
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "The One Solution",
-            "url": "https://theonesolution.co.in",
-            "logo": "https://theonesolution.co.in/path-to-logo.png",
-            "contactPoint": [
-              {
-                "@type": "ContactPoint",
-                "telephone": "+91-8088519842",
-                "contactType": "Customer Service",
-                "areaServed": "IN",
-                "availableLanguage": "English"
-              },
-              {
-                "@type": "ContactPoint",
-                "telephone": "+91-8792926999",
-                "contactType": "Customer Service",
-                "areaServed": "IN",
-                "availableLanguage": "English"
-              }
-            ],
-            "email": "hello@theonesolution.co.in",
-           
-            "description": "The One Solution provides fast-loading, exclusive websites with SEO optimization, responsive design, and excellent performance for clients across industries.",
-            "founders": [
-              {
-                "@type": "Person",
-                "name": "Nishchal S."
-              },
-              {
-                "@type": "Person",
-                "name": "Thanuj S."
-              }
-            ],
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Your Street Address",
-              "addressLocality": "City",
-              "addressRegion": "State",
-              "postalCode": "Postal Code",
-              "addressCountry": "IN"
-            },
-            "makesOffer": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Website Development",
-                  "description": "Custom web design and development for high-performance websites across various industries."
+                <!-- Social Media Service -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Social Media Marketing</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Engage your audience across all platforms with compelling content and targeted campaigns.
+                    </p>
+                </div>
+
+                <!-- Content Creation Service -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Content Creation</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Tell your brand story with high-quality content that resonates with your audience.
+                    </p>
+                </div>
+
+                <!-- Analytics Service -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Analytics & Insights</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Make data-driven decisions with comprehensive analytics and performance tracking.
+                    </p>
+                </div>
+
+                <!-- Paid Advertising Service -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m0 0V1a1 1 0 011-1h2a1 1 0 011 1v18a1 1 0 01-1 1H4a1 1 0 01-1-1V1a1 1 0 011-1h2a1 1 0 011 1v3z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Paid Advertising</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Maximize your ROI with targeted Google Ads, Facebook Ads, and other PPC campaigns.
+                    </p>
+                </div>
+
+                <!-- Website Development Service -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9-9a9 9 0 00-9 9m9-9v18" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Website Development</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Create stunning, responsive websites that convert visitors into customers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop" 
+                         alt="Professional team meeting" 
+                         class="rounded-2xl shadow-xl w-full h-96 object-cover">
+                </div>
+                <div>
+                    <h2 class="text-3xl sm:text-4xl font-medium text-gray-900 mb-6">
+                        Why Choose DigitalPro?
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        With over 5 years of experience in digital marketing, we've helped hundreds of 
+                        businesses transform their online presence and achieve remarkable growth. Our 
+                        team of certified experts stays ahead of industry trends to deliver cutting-edge 
+                        solutions.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="text-gray-700">Certified Google Partners</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="text-gray-700">Facebook Marketing Certified</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="text-gray-700">HubSpot Inbound Certified</span>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="text-gray-700">ISO 9001:2015 Quality Management</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <div class="text-2xl font-medium text-primary mb-2">15M+</div>
+                            <div class="text-gray-600">Impressions Generated</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl font-medium text-primary mb-2">2.5x</div>
+                            <div class="text-gray-600">Average ROI Increase</div>
+                        </div>
+                    </div>
+
+                    <button class="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                        Learn More About Us
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-medium text-gray-900 mb-4">
+                    What Our Clients Say
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Don't just take our word for it. Here's what our satisfied clients have to say 
+                    about working with DigitalPro.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        "DigitalPro transformed our online presence completely. Our website traffic increased by 300% and lead generation improved dramatically."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face" 
+                             alt="Sarah Johnson" class="h-12 w-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <div class="font-medium text-gray-900">Sarah Johnson</div>
+                            <div class="text-gray-600 text-sm">CEO, TechStart Inc.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        "The team's expertise in SEO and content marketing is exceptional. We saw results within the first month of working with them."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" 
+                             alt="Michael Chen" class="h-12 w-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <div class="font-medium text-gray-900">Michael Chen</div>
+                            <div class="text-gray-600 text-sm">Marketing Director, RetailMax</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="flex items-center mb-4">
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                        <svg class="h-5 w-5 star-filled" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        "Professional, responsive, and results-driven. DigitalPro exceeded our expectations in every aspect of our digital marketing campaign."
+                    </p>
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face" 
+                             alt="Emily Rodriguez" class="h-12 w-12 rounded-full mr-4 object-cover">
+                        <div>
+                            <div class="font-medium text-gray-900">Emily Rodriguez</div>
+                            <div class="text-gray-600 text-sm">Founder, Creative Studio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-medium text-gray-900 mb-4">
+                    Ready to Get Started?
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Let's discuss how we can help transform your digital marketing strategy 
+                    and drive real results for your business.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-xl font-medium mb-6">Send us a message</h3>
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium mb-2">Name *</label>
+                                    <input id="name" type="text" placeholder="Your full name" 
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-2">Email *</label>
+                                    <input id="email" type="email" placeholder="your.email@company.com" 
+                                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="company" class="block text-sm font-medium mb-2">Company</label>
+                                <input id="company" type="text" placeholder="Your company name" 
+                                       class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium mb-2">Message *</label>
+                                <textarea id="message" placeholder="Tell us about your project and goals..." rows="4"
+                                          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"></textarea>
+                            </div>
+                            <button type="submit" class="bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <div class="flex items-center mb-4">
+                            <svg class="h-5 w-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <div>
+                                <div class="font-medium text-gray-900">Email</div>
+                                <div class="text-gray-600">hello@digitalpro.com</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <svg class="h-5 w-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <div>
+                                <div class="font-medium text-gray-900">Phone</div>
+                                <div class="text-gray-600">+1 (555) 123-4567</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center mb-4">
+                            <svg class="h-5 w-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <div class="font-medium text-gray-900">Address</div>
+                                <div class="text-gray-600">123 Business Ave<br>Suite 100, City, State 12345</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-primary mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <div class="font-medium text-gray-900">Business Hours</div>
+                                <div class="text-gray-600">Mon-Fri: 9AM-6PM<br>Sat-Sun: Closed</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-primary text-primary-foreground p-6 rounded-lg">
+                        <h3 class="text-lg font-medium mb-3">Free Consultation</h3>
+                        <p class="text-sm mb-4 opacity-90">
+                            Get a free 30-minute consultation to discuss your digital marketing goals.
+                        </p>
+                        <button class="w-full bg-white text-primary px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                            Book Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-2xl font-medium text-white mb-4">DigitalPro</div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Transforming businesses through innovative digital marketing strategies. 
+                        Your success is our mission.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.747-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.001z."/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-medium mb-4">Services</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">SEO Optimization</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Social Media Marketing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Content Creation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Paid Advertising</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Website Development</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-medium mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Our Team</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
+                <p class="text-sm text-gray-400">
+                    © 2025 DigitalPro. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">
+                        Privacy Policy
+                    </a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">
+                        Terms of Service
+                    </a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">
+                        Cookie Policy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
                 }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Digital Marketing",
-                  "description": "Digital marketing solutions to enhance online presence, targeting the right audience through PPC and SEO."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Branding",
-                  "description": "Branding and identity services including logo creation, brand guidelines, and strategic messaging."
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Custom Software Development",
-                  "description": "Custom software solutions tailored to client needs, improving operational efficiency and scalability."
-                }
-              }
-            ]
-          }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
     </script>
 </body>
 </html>
