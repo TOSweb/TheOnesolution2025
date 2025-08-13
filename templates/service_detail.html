@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if service.meta_title %}{{ service.meta_title }}{% else %}{{ service.title }}{% endif %} - DigitalPro Digital Marketing Services</title>
+    
+    <!-- SEO Meta Tags -->
+    {% if service.meta_description %}
+    <meta name="description" content="{{ service.meta_description }}">
+    {% endif %}
+    {% if service.meta_keywords %}
+    <meta name="keywords" content="{{ service.meta_keywords }}">
+    {% endif %}
+    {% if service.canonical_url %}
+    <link rel="canonical" href="{{ service.canonical_url }}">
+    {% endif %}
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{% if service.og_title %}{{ service.og_title }}{% else %}{{ service.title }}{% endif %}">
+    <meta property="og:description" content="{% if service.og_description %}{{ service.og_description }}{% else %}{{ service.short_description }}{% endif %}">
+    {% if service.og_image %}
+    <meta property="og:image" content="{{ service.og_image.url }}">
+    {% elif service.image %}
+    <meta property="og:image" content="{{ service.image.url }}">
+    {% endif %}
+    <meta property="og:type" content="{% if service.og_type %}{{ service.og_type }}{% else %}service{% endif %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="{% if service.twitter_card %}{{ service.twitter_card }}{% else %}summary_large_image{% endif %}">
+    <meta name="twitter:title" content="{% if service.twitter_title %}{{ service.twitter_title }}{% else %}{{ service.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if service.twitter_description %}{{ service.twitter_description }}{% else %}{{ service.short_description }}{% endif %}">
+    {% if service.twitter_image %}
+    <meta name="twitter:image" content="{{ service.twitter_image.url }}">
+    {% elif service.og_image %}
+    <meta name="twitter:image" content="{{ service.og_image.url }}">
+    {% elif service.image %}
+    <meta name="twitter:image" content="{{ service.image.url }}">
+    {% endif %}
+    
+    <!-- Schema Markup -->
+    {% if service.schema_markup %}
+    <script type="application/ld+json">
+        {{ service.schema_markup|safe }}
+    </script>
+    {% endif %}
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        background: '#ffffff',
+                        foreground: 'oklch(0.145 0 0)',
+                        card: '#ffffff',
+                        'card-foreground': 'oklch(0.145 0 0)',
+                        primary: '#030213',
+                        'primary-foreground': 'oklch(1 0 0)',
+                        secondary: 'oklch(0.95 0.0058 264.53)',
+                        'secondary-foreground': '#030213',
+                        muted: '#ececf0',
+                        'muted-foreground': '#717182',
+                        accent: '#e9ebef',
+                        'accent-foreground': '#030213',
+                        destructive: '#d4183d',
+                        'destructive-foreground': '#ffffff',
+                        border: 'rgba(0, 0, 0, 0.1)',
+                        input: 'transparent',
+                        'input-background': '#f3f3f5',
+                        ring: 'oklch(0.708 0 0)',
+                    },
+                    borderRadius: {
+                        lg: '0.625rem',
+                        md: 'calc(0.625rem - 2px)',
+                        sm: 'calc(0.625rem - 4px)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+        }
+        .shadow-xl {
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background text-foreground">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="/" class="text-2xl font-medium text-primary tracking-tight">DigitalPro</a>
+                    </div>
+                </div>
+                
+                <nav class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="/#services" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Services</a>
+                        <a href="/#about" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">About</a>
+                        <a href="/#testimonials" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Testimonials</a>
+                        <a href="/#contact" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Contact</a>
+                    </div>
+                </nav>
+
+                <div class="hidden md:block">
+                    <button class="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-primary hover:bg-gray-100">
+                        <svg id="menu-icon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mobile-menu" class="md:hidden hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+                    <a href="/#services" class="block px-3 py-2 text-gray-600 hover:text-primary">Services</a>
+                    <a href="/#about" class="block px-3 py-2 text-gray-600 hover:text-primary">About</a>
+                    <a href="/#testimonials" class="block px-3 py-2 text-gray-600 hover:text-primary">Testimonials</a>
+                    <a href="/#contact" class="block px-3 py-2 text-gray-600 hover:text-primary">Contact</a>
+                    <div class="px-3 py-2">
+                        <button class="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                            Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <nav class="flex" aria-label="Breadcrumb">
+                <ol class="flex items-center space-x-4">
+                    <li>
+                        <a href="/" class="text-gray-500 hover:text-gray-700">Home</a>
+                    </li>
+                    <li>
+                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </li>
+                    <li>
+                        <a href="/#services" class="text-gray-500 hover:text-gray-700">Services</a>
+                    </li>
+                    <li>
+                        <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </li>
+                    <li class="text-gray-900 font-medium">{{ service.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary mb-4">
+                        {% if service.category %}{{ service.category.name }}{% else %}Digital Marketing{% endif %}
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-medium tracking-tight text-gray-900 mb-6">
+                        {{ service.title }}
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        {{ service.short_description }}
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button class="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors text-base flex items-center justify-center">
+                            Get Started Today
+                            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            </svg>
+                        </button>
+                        <button class="border border-gray-300 text-gray-700 px-8 py-3 rounded-lg hover:bg-gray-50 transition-colors text-base flex items-center justify-center">
+                            <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v3a3 3 0 003 3z" />
+                            </svg>
+                            Request Quote
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:pl-8">
+                    {% if service.image %}
+                    <img src="{{ service.image.url }}" 
+                         alt="{{ service.title }}" 
+                         class="rounded-2xl shadow-2xl w-full h-96 object-cover">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" 
+                         alt="{{ service.title }}" 
+                         class="rounded-2xl shadow-2xl w-full h-96 object-cover">
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Main Content -->
+                <div class="lg:col-span-2">
+                    <h2 class="text-3xl font-medium text-gray-900 mb-8">What We Offer</h2>
+                    
+                    <div class="space-y-8">
+                        {% if service.features %}
+                            {% for feature in service.features %}
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-medium text-gray-900 mb-2">{{ feature }}</h3>
+                                    <p class="text-gray-600 leading-relaxed">{{ feature }} - Comprehensive service offering to help your business grow.</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        {% else %}
+                        <!-- Fallback features if none are available -->
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                                <svg class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-900 mb-2">Professional Service</h3>
+                                <p class="text-gray-600 leading-relaxed">Comprehensive analysis and implementation of best practices for optimal results.</p>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mt-12">
+                        <h3 class="text-2xl font-medium text-gray-900 mb-6">Our Process</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {% if service.process_steps %}
+                                {% for step in service.process_steps %}
+                                <div class="bg-gray-50 rounded-lg p-6">
+                                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-lg font-medium mb-4">
+                                        {{ forloop.counter }}
+                                    </div>
+                                    <h4 class="text-lg font-medium text-gray-900 mb-2">{{ step }}</h4>
+                                    <p class="text-gray-600">Professional implementation of {{ step|lower }} to achieve optimal results for your business.</p>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                            <!-- Fallback process steps if none are available -->
+                            <div class="bg-gray-50 rounded-lg p-6">
+                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-lg font-medium mb-4">
+                                    1
+                                </div>
+                                <h4 class="text-lg font-medium text-gray-900 mb-2">Discovery & Analysis</h4>
+                                <p class="text-gray-600">We start with a comprehensive audit of your current performance and identify key opportunities.</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-6">
+                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-lg font-medium mb-4">
+                                    2
+                                </div>
+                                <h4 class="text-lg font-medium text-gray-900 mb-2">Strategy Development</h4>
+                                <p class="text-gray-600">Based on our analysis, we create a customized strategy tailored to your business goals.</p>
+                            </div>
+                            {% endif %}
+                            <div class="bg-gray-50 rounded-lg p-6">
+                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-lg font-medium mb-4">
+                                    3
+                                </div>
+                                <h4 class="text-lg font-medium text-gray-900 mb-2">Implementation</h4>
+                                <p class="text-gray-600">We implement technical optimizations, content improvements, and link building strategies.</p>
+                            </div>
+                            <div class="bg-gray-50 rounded-lg p-6">
+                                <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-lg font-medium mb-4">
+                                    4
+                                </div>
+                                <h4 class="text-lg font-medium text-gray-900 mb-2">Monitoring & Optimization</h4>
+                                <p class="text-gray-600">Continuous monitoring of performance metrics and ongoing optimization to improve results.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-6">
+                    <!-- Service Benefits -->
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Key Benefits</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700">Increased organic traffic</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700">Better search rankings</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700">Improved user experience</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700">Long-term sustainable growth</span>
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span class="text-gray-700">Higher conversion rates</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pricing -->
+                    <div class="bg-primary text-primary-foreground p-6 rounded-lg">
+                        <h3 class="text-lg font-medium mb-3">Starting From</h3>
+                        <div class="text-3xl font-bold mb-2">{% if service.pricing %}{{ service.pricing }}{% else %}$1,500{% endif %}</div>
+                        <p class="text-sm mb-4 opacity-90">
+                            {% if service.pricing %}{{ service.pricing }} packages{% else %}Monthly packages{% endif %} tailored to your business needs and goals.
+                        </p>
+                        <button class="w-full bg-white text-primary px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                            Get Custom Quote
+                        </button>
+                    </div>
+
+                    <!-- Contact CTA -->
+                    <div class="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-3">Need Help?</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Our SEO experts are here to help you improve your search rankings.
+                        </p>
+                        <button class="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                            Schedule Consultation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Services -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-medium text-gray-900 mb-4">
+                    Other Services You Might Like
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Explore our other digital marketing services to create a comprehensive strategy for your business.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% if related_services %}
+                    {% for related_service in related_services %}
+                    <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                        <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                            {% if related_service.icon %}
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ related_service.icon }}" />
+                                </svg>
+                            {% else %}
+                                <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            {% endif %}
+                        </div>
+                        <h3 class="text-xl font-medium mb-3">{{ related_service.title }}</h3>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            {{ related_service.short_description }}
+                        </p>
+                        <a href="{% url 'service_detail' related_service.slug %}" class="text-primary hover:text-primary/80 font-medium text-sm">
+                            Learn More →
+                        </a>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                <!-- Fallback related services if none are available -->
+                <div class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-all hover-lift">
+                    <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3">Social Media Marketing</h3>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        Engage your audience across all platforms with compelling content and targeted campaigns.
+                    </p>
+                    <a href="#" class="text-primary hover:text-primary/80 font-medium text-sm">
+                        Learn More →
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="text-2xl font-medium text-white mb-4">DigitalPro</div>
+                    <p class="text-gray-400 mb-6 max-w-md">
+                        Transforming businesses through innovative digital marketing strategies. 
+                        Your success is our mission.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-white font-medium mb-4">Services</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">SEO Optimization</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Social Media Marketing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Content Creation</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Paid Advertising</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Website Development</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-medium mb-4">Company</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Our Team</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
+                <p class="text-sm text-gray-400">
+                    © 2025 DigitalPro. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 sm:mt-0">
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">
+                        Privacy Policy
+                    </a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">
+                        Terms of Service
+                    </a>
+                    <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">
+                        Cookie Policy
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('shadow-lg');
+            } else {
+                header.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
