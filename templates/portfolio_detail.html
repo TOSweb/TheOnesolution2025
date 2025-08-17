@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStart Inc. Case Study - DigitalPro Portfolio</title>
+    <title>{{ portfolio.title }} - The One Solution Portfolio</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script>
         tailwind.config = {
@@ -66,12 +66,11 @@
                 
                 <nav class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="/#services" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Services</a>
-                        <a href="/#about" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">About</a>
-                        <a href="/#testimonials" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Testimonials</a>
-                        <a href="/#contact" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Contact</a>
+                        <a href="{% url 'index' %}" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Home</a>
+                        <a href="{% url 'service_list' %}" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Services</a>
                         <a href="{% url 'blog_list' %}" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Blog</a>
-                        <a href="#" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Portfolio</a>
+                        <a href="{% url 'portfolio' %}" class="text-primary px-3 py-2 transition-colors">Portfolio</a>
+                        <a href="{% url 'about' %}" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">About</a>
                     </div>
                 </nav>
 
@@ -93,14 +92,13 @@
                 </div>
             </div>
 
-            <div id="mobile-menu" class="md:hidden hidden">
+                        <div id="mobile-menu" class="md:hidden hidden">
                 <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
-                    <a href="/#services" class="block px-3 py-2 text-gray-600 hover:text-primary">Services</a>
-                    <a href="/#about" class="block px-3 py-2 text-gray-600 hover:text-primary">About</a>
-                    <a href="/#testimonials" class="block px-3 py-2 text-gray-600 hover:text-primary">Testimonials</a>
-                    <a href="/#contact" class="block px-3 py-2 text-gray-600 hover:text-primary">Contact</a>
+                    <a href="{% url 'index' %}" class="block px-3 py-2 text-gray-600 hover:text-primary">Home</a>
+                    <a href="{% url 'service_list' %}" class="block px-3 py-2 text-gray-600 hover:text-primary">Services</a>
                     <a href="{% url 'blog_list' %}" class="block px-3 py-2 text-gray-600 hover:text-primary">Blog</a>
-                    <a href="#" class="block px-3 py-2 text-gray-600 hover:text-primary">Portfolio</a>
+                    <a href="{% url 'portfolio' %}" class="block px-3 py-2 text-primary">Portfolio</a>
+                    <a href="{% url 'about' %}" class="block px-3 py-2 text-gray-600 hover:text-primary">About</a>
                     <div class="px-3 py-2">
                         <button class="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
                             Get Started
@@ -117,7 +115,7 @@
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="flex items-center space-x-4">
                     <li>
-                        <a href="/" class="text-gray-500 hover:text-gray-700">Home</a>
+                        <a href="{% url 'index' %}" class="text-gray-500 hover:text-gray-700">Home</a>
                     </li>
                     <li>
                         <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
@@ -125,14 +123,14 @@
                         </svg>
                     </li>
                     <li>
-                        <a href="/portfolio/" class="text-gray-500 hover:text-gray-700">Portfolio</a>
+                        <a href="{% url 'portfolio' %}" class="text-gray-500 hover:text-gray-700">Portfolio</a>
                     </li>
                     <li>
                         <svg class="flex-shrink-0 h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </li>
-                    <li class="text-gray-900 font-medium">TechStart Inc.</li>
+                    <li class="text-gray-900 font-medium">{{ portfolio.title }}</li>
                 </ol>
             </nav>
         </div>
@@ -143,36 +141,33 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
+                    {% if portfolio.category %}
                     <div class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800 mb-4">
-                        E-commerce
+                        {{ portfolio.category.name }}
                     </div>
+                    {% endif %}
                     <h1 class="text-4xl sm:text-5xl font-medium tracking-tight text-gray-900 mb-6">
-                        TechStart Inc. - Complete Digital Transformation
+                        {{ portfolio.title }}
                     </h1>
+                    {% if portfolio.short_description %}
                     <p class="text-lg text-gray-600 mb-8 leading-relaxed">
-                        A comprehensive digital marketing campaign that transformed TechStart Inc.'s 
-                        online presence, resulting in unprecedented growth and market expansion.
+                        {{ portfolio.short_description }}
                     </p>
+                    {% endif %}
                     
                     <!-- Key Results -->
+                    {% if portfolio.metrics_items.all %}
                     <div class="grid grid-cols-2 gap-6 mb-8">
+                        {% for metric in portfolio.metrics_items.all %}
+                        {% if forloop.counter <= 4 %}
                         <div class="text-center p-4 bg-white rounded-lg border border-gray-200">
-                            <div class="text-3xl font-bold text-primary mb-1">300%</div>
-                            <div class="text-sm text-gray-600">Traffic Increase</div>
+                            <div class="text-3xl font-bold text-primary mb-1">{{ metric.metric_value }}</div>
+                            <div class="text-sm text-gray-600">{{ metric.metric_label }}</div>
                         </div>
-                        <div class="text-center p-4 bg-white rounded-lg border border-gray-200">
-                            <div class="text-3xl font-bold text-primary mb-1">45%</div>
-                            <div class="text-sm text-gray-600">Conversion Rate</div>
-                        </div>
-                        <div class="text-center p-4 bg-white rounded-lg border border-gray-200">
-                            <div class="text-3xl font-bold text-primary mb-1">2.5x</div>
-                            <div class="text-sm text-gray-600">ROI Improvement</div>
-                        </div>
-                        <div class="text-center p-4 bg-white rounded-lg border border-gray-200">
-                            <div class="text-3xl font-bold text-primary mb-1">$2.1M</div>
-                            <div class="text-sm text-gray-600">Revenue Generated</div>
-                        </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
+                    {% endif %}
 
                     <div class="flex flex-col sm:flex-row gap-4">
                         <button class="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors text-base flex items-center justify-center">
@@ -190,9 +185,15 @@
                     </div>
                 </div>
                 <div class="lg:pl-8">
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" 
-                         alt="TechStart Inc. project" 
+                    {% if portfolio.featured_image %}
+                    <img src="{{ portfolio.featured_image.url }}" 
+                         alt="{{ portfolio.title }}" 
                          class="rounded-2xl shadow-2xl w-full h-96 object-cover">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" 
+                         alt="{{ portfolio.title }}" 
+                         class="rounded-2xl shadow-2xl w-full h-96 object-cover">
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -206,79 +207,32 @@
                 <div class="lg:col-span-2">
                     <h2 class="text-3xl font-medium text-gray-900 mb-8">Project Overview</h2>
                     
+                    {% if portfolio.full_description %}
                     <div class="prose prose-lg max-w-none">
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            TechStart Inc. was a growing technology company facing challenges with their online presence. 
-                            Despite having innovative products, their website was outdated, SEO performance was poor, 
-                            and their social media presence was minimal. They needed a complete digital transformation 
-                            to compete effectively in their market.
-                        </p>
-
-                        <h3 class="text-xl font-medium text-gray-900 mb-4">The Challenge</h3>
-                        <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
-                            <li>Outdated website design that didn't convert visitors</li>
-                            <li>Poor search engine rankings (page 3+ for target keywords)</li>
-                            <li>Limited social media presence and engagement</li>
-                            <li>No content marketing strategy</li>
-                            <li>Low online lead generation</li>
-                        </ul>
-
-                        <h3 class="text-xl font-medium text-gray-900 mb-4">Our Solution</h3>
-                        <p class="text-gray-600 mb-6 leading-relaxed">
-                            We developed a comprehensive digital marketing strategy that included website redesign, 
-                            SEO optimization, content marketing, social media management, and paid advertising campaigns. 
-                            Our approach focused on creating a cohesive brand experience across all digital touchpoints.
-                        </p>
-
-                        <h3 class="text-xl font-medium text-gray-900 mb-4">Implementation Process</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-medium mr-4">
-                                    1
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-2">Discovery & Analysis</h4>
-                                    <p class="text-gray-600">Conducted comprehensive audit of current digital presence, competitor analysis, and market research.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-medium mr-4">
-                                    2
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-2">Strategy Development</h4>
-                                    <p class="text-gray-600">Created detailed digital marketing roadmap with specific goals, timelines, and success metrics.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-medium mr-4">
-                                    3
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-2">Website Redesign</h4>
-                                    <p class="text-gray-600">Built modern, responsive website with improved user experience and conversion optimization.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-medium mr-4">
-                                    4
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-2">SEO Implementation</h4>
-                                    <p class="text-gray-600">Implemented technical SEO improvements, content optimization, and link building strategies.</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center text-sm font-medium mr-4">
-                                    5
-                                </div>
-                                <div>
-                                    <h4 class="font-medium text-gray-900 mb-2">Content & Social Media</h4>
-                                    <p class="text-gray-600">Developed content marketing strategy and managed social media presence across platforms.</p>
-                                </div>
-                            </div>
-                        </div>
+                        {{ portfolio.full_description|safe }}
                     </div>
+                    {% endif %}
+                    
+                    {% if portfolio.challenge %}
+                    <h3 class="text-xl font-medium text-gray-900 mb-4 mt-8">The Challenge</h3>
+                    <div class="prose prose-lg max-w-none">
+                        {{ portfolio.challenge|safe }}
+                    </div>
+                    {% endif %}
+                    
+                    {% if portfolio.solution %}
+                    <h3 class="text-xl font-medium text-gray-900 mb-4 mt-8">Our Solution</h3>
+                    <div class="prose prose-lg max-w-none">
+                        {{ portfolio.solution|safe }}
+                    </div>
+                    {% endif %}
+                    
+                    {% if portfolio.implementation %}
+                    <h3 class="text-xl font-medium text-gray-900 mb-4 mt-8">Implementation Process</h3>
+                    <div class="prose prose-lg max-w-none">
+                        {{ portfolio.implementation|safe }}
+                    </div>
+                    {% endif %}
                 </div>
 
                 <!-- Sidebar -->
@@ -287,205 +241,109 @@
                     <div class="bg-white border border-gray-200 rounded-lg p-6">
                         <h3 class="text-lg font-medium text-gray-900 mb-4">Project Details</h3>
                         <div class="space-y-3">
+                            {% if portfolio.client_name %}
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Client:</span>
-                                <span class="font-medium text-gray-900">TechStart Inc.</span>
+                                <span class="font-medium text-gray-900">{{ portfolio.client_name }}</span>
                             </div>
+                            {% endif %}
+                            {% if portfolio.project_industry %}
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Industry:</span>
-                                <span class="font-medium text-gray-900">Technology</span>
+                                <span class="font-medium text-gray-900">{{ portfolio.project_industry }}</span>
                             </div>
+                            {% endif %}
+                            {% if portfolio.related_services.all %}
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Services:</span>
-                                <span class="font-medium text-gray-900">Full Service</span>
+                                <span class="font-medium text-gray-900">
+                                    {% for service in portfolio.related_services.all %}
+                                        {{ service.name }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </span>
                             </div>
+                            {% endif %}
+                            {% if portfolio.project_duration %}
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Timeline:</span>
-                                <span class="font-medium text-gray-900">6 Months</span>
+                                <span class="font-medium text-gray-900">{{ portfolio.project_duration }}</span>
                             </div>
+                            {% endif %}
+                            {% if portfolio.team_size %}
                             <div class="flex justify-between">
                                 <span class="text-gray-600">Team Size:</span>
-                                <span class="font-medium text-gray-900">8 Members</span>
+                                <span class="font-medium text-gray-900">{{ portfolio.team_size }}</span>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
 
                     <!-- Technologies Used -->
-                    <div class="bg-white border border-gray-200 rounded-lg p-6">
-                        <h3 class="text-lg font-medium text-gray-900 mb-4">Technologies Used</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">WordPress</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Google Analytics</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">SEMrush</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Mailchimp</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Hootsuite</span>
-                            <span class="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">Google Ads</span>
-                        </div>
-                    </div>
+                    
 
                     <!-- Client Testimonial -->
+                    {% if portfolio.client_testimonial %}
                     <div class="bg-primary text-white p-6 rounded-lg">
                         <div class="flex items-center mb-4">
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face" 
                                  alt="Client" class="h-12 w-12 rounded-full mr-3 object-cover">
                             <div>
-                                <div class="font-medium">John Smith</div>
-                                <div class="text-sm opacity-90">CEO, TechStart Inc.</div>
+                                <div class="font-medium">{{ portfolio.client_name|default:"Client" }}</div>
+                                {% if portfolio.client_position %}
+                                <div class="text-sm opacity-90">{{ portfolio.client_position }}{% if portfolio.client_company %}, {{ portfolio.client_company }}{% endif %}</div>
+                                {% endif %}
                             </div>
                         </div>
                         <p class="text-sm italic">
-                            "DigitalPro transformed our business completely. The results exceeded our expectations 
-                            and we've seen incredible growth in our online presence and revenue."
+                            "{{ portfolio.client_testimonial }}"
                         </p>
                     </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Results & Metrics -->
-    <section class="py-20 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-medium text-gray-900 mb-4">Results & Impact</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    The comprehensive digital transformation delivered measurable results across all key performance indicators.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-primary mb-2">300%</div>
-                    <div class="text-gray-600 mb-2">Organic Traffic Increase</div>
-                    <div class="text-sm text-gray-500">From 5K to 20K monthly visitors</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-primary mb-2">45%</div>
-                    <div class="text-gray-600 mb-2">Conversion Rate</div>
-                    <div class="text-sm text-gray-500">Improved from 2.1% to 3.1%</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-primary mb-2">2.5x</div>
-                    <div class="text-gray-600 mb-2">ROI Improvement</div>
-                    <div class="text-sm text-gray-500">Marketing spend efficiency</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-primary mb-2">$2.1M</div>
-                    <div class="text-gray-600 mb-2">Revenue Generated</div>
-                    <div class="text-sm text-gray-500">Additional annual revenue</div>
-                </div>
-            </div>
-
-            <!-- Detailed Metrics -->
-            <div class="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <div>
-                    <h3 class="text-2xl font-medium text-gray-900 mb-6">SEO Performance</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center p-4 bg-white rounded-lg border border-gray-200">
-                            <span class="text-gray-700">Target Keywords Ranking</span>
-                            <span class="font-medium text-primary">25+ (Page 1)</span>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-white rounded-lg border border-gray-200">
-                            <span class="text-gray-700">Domain Authority</span>
-                            <span class="font-medium text-primary">45 → 68</span>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-white rounded-lg border border-gray-200">
-                            <span class="text-gray-700">Backlinks Acquired</span>
-                            <span class="font-medium text-primary">150+</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-2xl font-medium text-gray-900 mb-6">Social Media Growth</h3>
-                    <div class="space-y-4">
-                        <div class="flex justify-between items-center p-4 bg-white rounded-lg border border-gray-200">
-                            <span class="text-gray-700">LinkedIn Followers</span>
-                            <span class="font-medium text-primary">2,500 → 8,200</span>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-white rounded-lg border border-gray-200">
-                            <span class="text-gray-700">Engagement Rate</span>
-                            <span class="font-medium text-primary">3.2% → 7.8%</span>
-                        </div>
-                        <div class="flex justify-between items-center p-4 bg-white rounded-lg border border-gray-200">
-                            <span class="text-gray-700">Content Reach</span>
-                            <span class="font-medium text-primary">15K → 45K</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+   
+    
 
     <!-- Before & After -->
+    {% if portfolio.before_image or portfolio.after_image %}
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-medium text-gray-900 mb-4">Before & After</h2>
                 <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    See the dramatic transformation in TechStart Inc.'s digital presence.
+                    See the dramatic transformation in {{ portfolio.client_name|default:"our client's" }} digital presence.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {% if portfolio.before_image %}
                 <div>
                     <h3 class="text-xl font-medium text-gray-900 mb-4 text-center">Before</h3>
-                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop" 
-                         alt="Before website" 
+                    <img src="{{ portfolio.before_image.url }}" 
+                         alt="Before {{ portfolio.title }}" 
                          class="rounded-lg shadow-lg w-full mb-4">
-                    <ul class="text-gray-600 space-y-2">
-                        <li class="flex items-center">
-                            <svg class="h-4 w-4 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            Outdated design and poor user experience
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="h-4 w-4 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            Low search engine rankings
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="h-4 w-4 text-red-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            Minimal social media presence
-                        </li>
-                    </ul>
                 </div>
+                {% endif %}
 
+                {% if portfolio.after_image %}
                 <div>
                     <h3 class="text-xl font-medium text-gray-900 mb-4 text-center">After</h3>
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" 
-                         alt="After website" 
+                    <img src="{{ portfolio.after_image.url }}" 
+                         alt="After {{ portfolio.title }}" 
                          class="rounded-lg shadow-lg w-full mb-4">
-                    <ul class="text-gray-600 space-y-2">
-                        <li class="flex items-center">
-                            <svg class="h-4 w-4 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Modern, responsive design with excellent UX
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="h-4 w-4 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Top search engine rankings
-                        </li>
-                        <li class="flex items-center">
-                            <svg class="h-4 w-4 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Strong social media engagement
-                        </li>
-                    </ul>
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>
+    {% endif %}
 
     <!-- Related Projects -->
+    {% if related_portfolios %}
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -498,77 +356,46 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {% for related_portfolio in related_portfolios %}
+                {% if forloop.counter <= 3 %}
                 <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all hover-lift">
                     <div class="relative">
+                        {% if related_portfolio.featured_image %}
+                        <img src="{{ related_portfolio.featured_image.url }}" 
+                             alt="{{ related_portfolio.title }}" 
+                             class="w-full h-48 object-cover">
+                        {% else %}
                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop" 
-                             alt="Social media campaign" 
+                             alt="{{ related_portfolio.title }}" 
                              class="w-full h-48 object-cover">
+                        {% endif %}
+                        {% if related_portfolio.category %}
                         <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                            Social Media
+                            {{ related_portfolio.category.name }}
                         </div>
+                        {% endif %}
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-medium mb-3">RetailMax - Social Media Campaign</h3>
+                        <h3 class="text-xl font-medium mb-3">{{ related_portfolio.title }}</h3>
                         <p class="text-gray-600 mb-4 leading-relaxed">
-                            Comprehensive social media strategy that generated 2.5M+ impressions and increased brand engagement by 180%.
+                            {{ related_portfolio.short_description|truncatewords:20 }}
                         </p>
                         <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-500">Retail Sector</div>
-                            <a href="#" class="text-primary hover:text-primary/80 font-medium text-sm">
+                            {% if related_portfolio.project_industry %}
+                            <div class="text-sm text-gray-500">{{ related_portfolio.project_industry }}</div>
+                            {% endif %}
+                            <a href="{% url 'portfolio_detail' related_portfolio.slug %}" class="text-primary hover:text-primary/80 font-medium text-sm">
                                 View Case Study →
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all hover-lift">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=300&fit=crop" 
-                             alt="SEO optimization results" 
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                            SEO
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-medium mb-3">Creative Studio - SEO Transformation</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Strategic SEO implementation that moved the website from page 3 to page 1 for 25+ target keywords.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-500">Creative Industry</div>
-                            <a href="#" class="text-primary hover:text-primary/80 font-medium text-sm">
-                                View Case Study →
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-all hover-lift">
-                    <div class="relative">
-                        <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=600&h=300&fit=crop" 
-                             alt="PPC campaign results" 
-                             class="w-full h-48 object-cover">
-                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                            PPC
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-medium mb-3">HealthTech - PPC Campaign</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Google Ads campaign optimization that reduced cost-per-click by 40% while increasing conversions by 65%.
-                        </p>
-                        <div class="flex items-center justify-between">
-                            <div class="text-sm text-gray-500">Healthcare</div>
-                            <a href="#" class="text-primary hover:text-primary/80 font-medium text-sm">
-                                View Case Study →
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                {% endif %}
+                {% endfor %}
             </div>
         </div>
     </section>
+    {% endif %}
 
     <!-- CTA Section -->
     <section class="py-20 bg-primary">
@@ -595,7 +422,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-2">
-                    <div class="text-2xl font-medium text-white mb-4">DigitalPro</div>
+                    <div class="text-2xl font-medium text-white mb-4">The One Solution</div>
                     <p class="text-gray-400 mb-6 max-w-md">
                         Transforming businesses through innovative digital marketing strategies. 
                         Your success is our mission.
@@ -645,7 +472,7 @@
 
             <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
                 <p class="text-sm text-gray-400">
-                    © 2025 DigitalPro. All rights reserved.
+                    © 2025 The One Solution. All rights reserved.
                 </p>
                 <div class="flex space-x-6 mt-4 sm:mt-0">
                     <a href="#" class="text-sm text-gray-400 hover:text-white transition-colors">

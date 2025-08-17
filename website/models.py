@@ -187,7 +187,7 @@ class BlogPost(models.Model):
     canonical_url = models.URLField(blank=True, help_text="Canonical URL if different from post URL")
     
     # Schema markup and structured data
-    schema_markup = models.JSONField(default=dict, help_text="Custom JSON-LD schema markup")
+    schema_markup = models.JSONField(default=dict, help_text="Custom JSON-LD schema markup", blank=True, null=True)
     
     # Comprehensive Social Media Optimization
     # Open Graph (Facebook, WhatsApp, LinkedIn, etc.)
@@ -321,23 +321,68 @@ class SEOSettings(models.Model):
 class PortfolioCategory(models.Model):
     """Model for portfolio categories"""
     name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
     description = models.TextField(blank=True)
     
     # SEO fields
-    meta_title = models.CharField(max_length=60, blank=True, help_text="SEO title for category pages")
-    meta_description = models.TextField(max_length=160, blank=True, help_text="SEO description for category pages")
-    meta_keywords = models.CharField(max_length=200, blank=True, help_text="SEO keywords for category pages")
+    meta_title = models.CharField(max_length=60, blank=True)
+    meta_description = models.TextField(max_length=160, blank=True)
+    meta_keywords = models.CharField(max_length=200, blank=True)
     
-    # Schema markup
-    schema_markup = models.JSONField(default=dict, help_text="JSON-LD schema markup for category pages")
+    created_at = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = "Portfolio categories"
+        verbose_name_plural = "Portfolio Categories"
         ordering = ['name']
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse('category_detail', kwargs={'slug': self.slug})
+
+
+class PortfolioMetric(models.Model):
+    """Model for portfolio metrics and results"""
+    portfolio = models.ForeignKey('Portfolio', on_delete=models.CASCADE, related_name='metrics_items')
+    metric_value = models.CharField(max_length=100, help_text="The metric value (e.g., 300%, $2.1M, 2.5x)")
+    metric_label = models.CharField(max_length=200, help_text="Description of the metric (e.g., Traffic Increase, Revenue Generated)")
+    metric_type = models.CharField(max_length=50, choices=[
+        ('percentage', 'Percentage'),
+        ('currency', 'Currency'),
+        ('multiplier', 'Multiplier'),
+        ('number', 'Number'),
+        ('text', 'Text'),
+    ], default='text', help_text="Type of metric for proper formatting")
+    order = models.PositiveIntegerField(default=0, help_text="Order of display")
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['order', 'created_at']
+        verbose_name = "Portfolio Metric"
+        verbose_name_plural = "Portfolio Metrics"
+
+    def __str__(self):
+        return f"{self.metric_value} - {self.metric_label}"
+
+    def get_formatted_value(self):
+        """Return formatted metric value based on type"""
+        if self.metric_type == 'percentage':
+            return f"{self.metric_value}%"
+        elif self.metric_type == 'currency':
+            return f"${self.metric_value}"
+        elif self.metric_type == 'multiplier':
+            return f"{self.metric_value}x"
+        else:
+            return self.metric_value
 
 class Portfolio(models.Model):
     """Model for portfolio items and case studies"""
@@ -356,16 +401,12 @@ class Portfolio(models.Model):
     
     # Results
     results_summary = models.TextField(help_text="Summary of results achieved")
-    metrics = models.TextField(blank=True, help_text="List of key metrics and results (one per line)")
     
     # Before & After
     before_image = models.ImageField(upload_to='portfolio/before/', blank=True, null=True)
     after_image = models.ImageField(upload_to='portfolio/after/', blank=True, null=True)
     
-    # Additional details
-    technologies_used = models.TextField(blank=True, help_text="List of technologies used (one per line)")
-    project_duration = models.CharField(max_length=100, blank=True)
-    team_size = models.CharField(max_length=50, blank=True)
+    
     
     # Client testimonial
     client_testimonial = models.TextField(blank=True)
@@ -379,7 +420,7 @@ class Portfolio(models.Model):
     canonical_url = models.URLField(blank=True, help_text="Canonical URL if different from portfolio URL")
     
     # Schema markup and structured data
-    schema_markup = models.JSONField(default=dict, help_text="Custom JSON-LD schema markup")
+    schema_markup = models.JSONField(default=dict, help_text="Custom JSON-LD schema markup", blank=True, null=True)
     project_type = models.CharField(max_length=50, default='CreativeWork', choices=[
         ('CreativeWork', 'Creative Work'),
         ('WebSite', 'Website'),

@@ -7,7 +7,7 @@ from django.db import models
 from django_json_widget.widgets import JSONEditorWidget
 from .models import (
     Service, BlogCategory, BlogPost, BlogTag, PortfolioCategory, Portfolio,
-    TeamMember, Testimonial, Contact, Newsletter, SiteSettings, SEOSettings
+    TeamMember, Testimonial, Contact, Newsletter, SiteSettings, SEOSettings, PortfolioMetric
 )
 from .widgets import TinyMCEWidget
 
@@ -245,6 +245,14 @@ class PortfolioAdminForm(forms.ModelForm):
         }
 
 
+class PortfolioMetricInline(admin.TabularInline):
+    """Inline admin for portfolio metrics"""
+    model = PortfolioMetric
+    extra = 1
+    fields = ('metric_value', 'metric_label', 'metric_type', 'order')
+    ordering = ('order',)
+
+
 @admin.register(Portfolio)
 class PortfolioAdmin(admin.ModelAdmin):
     form = PortfolioAdminForm
@@ -254,6 +262,7 @@ class PortfolioAdmin(admin.ModelAdmin):
     search_fields = ['title', 'client_name', 'short_description', 'full_description']
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['created_at', 'updated_at']
+    inlines = [PortfolioMetricInline]
     
     formfield_overrides = {
         models.JSONField: {'widget': JSONEditorWidget},
@@ -267,7 +276,8 @@ class PortfolioAdmin(admin.ModelAdmin):
             'fields': ('challenge', 'solution', 'implementation', 'technologies_used', 'project_duration', 'team_size')
         }),
         ('Results & Metrics', {
-            'fields': ('results_summary', 'metrics', 'before_image', 'after_image')
+            'fields': ('results_summary', 'before_image', 'after_image'),
+            'description': 'Add metrics using the inline form below'
         }),
         ('Client Feedback', {
             'fields': ('client_testimonial', 'client_position', 'client_company')
@@ -293,6 +303,17 @@ class PortfolioAdmin(admin.ModelAdmin):
             'classes': ('collapse',)
         }),
     )
+
+
+@admin.register(PortfolioMetric)
+class PortfolioMetricAdmin(admin.ModelAdmin):
+    """Admin for portfolio metrics (standalone view)"""
+    list_display = ['portfolio', 'metric_value', 'metric_label', 'metric_type', 'order']
+    list_filter = ['metric_type', 'portfolio__category']
+    list_editable = ['order']
+    search_fields = ['metric_value', 'metric_label', 'portfolio__title']
+    ordering = ['portfolio', 'order']
+
 
 @admin.register(TeamMember)
 class TeamMemberAdmin(admin.ModelAdmin):

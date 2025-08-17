@@ -8,8 +8,16 @@ def index(request):
     """Homepage view with featured content"""
     featured_services = Service.objects.filter(is_featured=True, is_active=True).order_by('order')[:6]
     
+    # Get latest 3 portfolio items
+    latest_portfolios = Portfolio.objects.all().order_by('-id')[:3]
+    
+    # Get latest 3 blog posts
+    latest_posts = BlogPost.objects.filter(status='published').order_by('-published_date')[:3]
+    
     context = {
         'featured_services': featured_services,
+        'latest_portfolios': latest_portfolios,
+        'latest_posts': latest_posts,
     }
     return render(request, 'index.html', context)
 
@@ -22,6 +30,16 @@ class ServiceListView(ListView):
     
     def get_queryset(self):
         return Service.objects.filter(is_active=True)
+
+def service_list(request):
+    """Function-based view for listing all services"""
+    services = Service.objects.filter(is_active=True).order_by('order', 'title')
+    
+    context = {
+        'services': services,
+    }
+    
+    return render(request, 'service_list.html', context)
 
 def service_detail(request, slug):
     """View for individual service detail page"""
@@ -166,3 +184,41 @@ def category_detail(request, slug):
     }
     
     return render(request, 'category_detail.html', context)
+
+def portfolio_list(request):
+    """View for listing all portfolio items"""
+    portfolios = Portfolio.objects.all().order_by('-id')
+    categories = PortfolioCategory.objects.all().order_by('name')
+    
+    context = {
+        'portfolios': portfolios,
+        'categories': categories,
+    }
+    
+    return render(request, 'portfolio.html', context)
+
+def portfolio_detail(request, slug):
+    """View for displaying a single portfolio item"""
+    portfolio = get_object_or_404(Portfolio, slug=slug)
+    
+    # Get related portfolios from the same category
+    related_portfolios = Portfolio.objects.filter(
+        category=portfolio.category
+    ).exclude(id=portfolio.id).order_by('-id')[:3]
+    
+    # Get related portfolios from other categories
+    other_categories_portfolios = Portfolio.objects.exclude(
+        category=portfolio.category
+    ).exclude(id=portfolio.id).order_by('-id')[:3]
+    
+    context = {
+        'portfolio': portfolio,
+        'related_portfolios': related_portfolios,
+        'other_categories_portfolios': other_categories_portfolios,
+    }
+    
+    return render(request, 'portfolio_detail.html', context)
+
+def about(request):
+    """View for the about page"""
+    return render(request, 'about.html')
