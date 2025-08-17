@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Service, BlogPost, Portfolio, Testimonial, BlogCategory, BlogTag
 import random
 
@@ -132,14 +133,27 @@ def blog_detail(request, slug):
     return render(request, 'blog_detail.html', context)
 
 def category_detail(request, slug):
-    """View for displaying all posts from a specific category"""
+    """View for displaying all posts from a specific category with pagination"""
     category = get_object_or_404(BlogCategory, slug=slug)
     
     # Get all published posts from this category
-    posts = BlogPost.objects.filter(
+    posts_list = BlogPost.objects.filter(
         category=category,
         status='published'
     ).order_by('-published_date')
+    
+    # Pagination - 10 posts per page
+    paginator = Paginator(posts_list, 10)
+    page = request.GET.get('page')
+    
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range, deliver last page of results
+        posts = paginator.page(paginator.num_pages)
     
     # Get other categories for navigation
     other_categories = BlogCategory.objects.exclude(id=category.id).order_by('name')[:5]
@@ -148,6 +162,7 @@ def category_detail(request, slug):
         'category': category,
         'posts': posts,
         'other_categories': other_categories,
+        'paginator': paginator,
     }
     
     return render(request, 'category_detail.html', context)

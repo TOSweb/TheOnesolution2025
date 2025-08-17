@@ -60,7 +60,7 @@
             <div class="flex justify-between items-center h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <a href="/" class="text-2xl font-medium text-primary tracking-tight">DigitalPro</a>
+                        <a href="{% url 'index' %}" class="text-2xl font-medium text-primary tracking-tight">The One Solution</a>
                     </div>
                 </div>
                 
@@ -70,6 +70,8 @@
                         <a href="/about/" class="text-primary font-medium px-3 py-2">About</a>
                         <a href="/#testimonials" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Testimonials</a>
                         <a href="/#contact" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Contact</a>
+                        <a href="{% url 'blog_list' %}" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Blog</a>
+                        <a href="#" class="text-gray-600 hover:text-primary px-3 py-2 transition-colors">Portfolio</a>
                     </div>
                 </nav>
 
@@ -97,6 +99,8 @@
                     <a href="/about/" class="block px-3 py-2 text-primary font-medium">About</a>
                     <a href="/#testimonials" class="block px-3 py-2 text-gray-600 hover:text-primary">Testimonials</a>
                     <a href="/#contact" class="block px-3 py-2 text-gray-600 hover:text-primary">Contact</a>
+                    <a href="{% url 'blog_list' %}" class="block px-3 py-2 text-gray-600 hover:text-primary">Blog</a>
+                    <a href="#" class="block px-3 py-2 text-gray-600 hover:text-primary">Portfolio</a>
                     <div class="px-3 py-2">
                         <button class="w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
                             Get Started
@@ -352,6 +356,7 @@
                         <li><a href="#" class="hover:text-white transition-colors">Our Team</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
                         <li><a href="/portfolio/" class="hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="/portfolio/" class="hover:text-white transition-colors">Portfolio</a></li>
                         <li><a href="/blog/" class="hover:text-white transition-colors">Blog</a></li>
                     </ul>
                 </div>
