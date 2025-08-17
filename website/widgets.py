@@ -118,27 +118,3 @@ class TinyMCEWidget(forms.Textarea):
         </script>
         '''
         return mark_safe(textarea + script)
-
-
-class TinyMCEMiniWidget(forms.Textarea):
-    class Media:
-        js = ('tinymce/tinymce.min.js',)
-
-    def render(self, name, value, attrs=None, renderer=None):
-        textarea = super().render(name, value, attrs, renderer)
-        script = f'''
-        <script type="text/javascript">
-            tinymce.init({{
-                selector: 'textarea[name="{name}"]',
-                plugins: 'lists paste',
-                toolbar: 'bullist numlist',
-                width: '100%',
-                height: 150,
-                menubar: false,
-                statusbar: false,
-                resize: false,
-                license_key: 'gpl'
-            }});
-        </script>
-        '''
-        return mark_safe(textarea + script)

@@ -35,10 +35,10 @@ class ServiceAdminForm(forms.ModelForm):
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     form = ServiceAdminForm
-    list_display = ['title', 'is_featured', 'is_active', 'order', 'pricing', 'created_at']
-    list_filter = ['is_featured', 'is_active', 'created_at']
+    list_display = ['title', 'is_featured', 'is_active', 'order', 'pricing', 'service_area', 'created_at']
+    list_filter = ['is_featured', 'is_active', 'service_area', 'service_industry', 'created_at']
     list_editable = ['is_featured', 'is_active', 'order', 'pricing']
-    search_fields = ['title', 'short_description', 'full_description']
+    search_fields = ['title', 'short_description', 'full_description', 'service_area', 'service_industry']
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['created_at', 'updated_at']
     
@@ -49,11 +49,14 @@ class ServiceAdmin(admin.ModelAdmin):
         ('Basic Information', {
             'fields': ('title', 'slug', 'short_description', 'full_description', 'icon', 'image')
         }),
-        ('Pricing & Status', {
-            'fields': ('pricing', 'is_featured', 'is_active', 'order')
+        ('Service Details', {
+            'fields': ('service_area', 'service_industry', 'service_duration', 'pricing', 'is_featured', 'is_active', 'order')
         }),
         ('Features & Process', {
             'fields': ('features', 'process_steps', 'benefits')
+        }),
+        ('Related Services', {
+            'fields': ('related_services',)
         }),
         ('SEO & Social Media', {
             'fields': ('meta_title', 'meta_description', 'meta_keywords', 'canonical_url', 'schema_markup'),
@@ -150,9 +153,9 @@ class TeamMemberAdminForm(forms.ModelForm):
 @admin.register(BlogPost)
 class BlogPostAdmin(admin.ModelAdmin):
     form = BlogPostAdminForm
-    list_display = ['title', 'category', 'author', 'status', 'published_date', 'views_count', 'created_at']
-    list_filter = ['status', 'category', 'author', 'published_date', 'created_at']
-    list_editable = ['status']
+    list_display = ['title', 'category', 'author', 'status', 'is_featured', 'published_date', 'views_count', 'created_at']
+    list_filter = ['status', 'category', 'author', 'published_date', 'created_at', 'is_featured']
+    list_editable = ['status', 'is_featured']
     search_fields = ['title', 'content', 'excerpt']
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['views_count', 'created_at', 'updated_at']

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.name }} - Blog | The One Solution</title>
+    <meta name="description" content="Explore all {{ category.name }} articles and insights from The One Solution. Discover the latest trends, tips, and strategies in {{ category.name }}.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ category.name }} - Blog | The One Solution">
+    <meta property="og:description" content="Explore all {{ category.name }} articles and insights from The One Solution.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:site_name" content="The One Solution">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ category.name }} - Blog | The One Solution">
+    <meta name="twitter:description" content="Explore all {{ category.name }} articles and insights from The One Solution.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#030213',
+                        'primary-foreground': '#ffffff',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .hover-lift {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center">
+                    <a href="{% url 'index' %}" class="text-2xl font-bold text-primary">
+                        The One Solution
+                    </a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="{% url 'index' %}" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+                    <a href="{% url 'blog_list' %}" class="text-primary font-medium">Blog</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">Services</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">About</a>
+                    <a href="#" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Category Header -->
+        <div class="text-center mb-12">
+            <nav class="text-sm text-gray-500 mb-4">
+                <a href="{% url 'index' %}" class="hover:text-primary">Home</a>
+                <span class="mx-2">→</span>
+                <a href="{% url 'blog_list' %}" class="hover:text-primary">Blog</a>
+                <span class="mx-2">→</span>
+                <span class="text-gray-900">{{ category.name }}</span>
+            </nav>
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">{{ category.name }} Articles</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                Discover the latest insights, tips, and strategies in {{ category.name }}. 
+                Explore our comprehensive collection of articles and stay updated with industry trends.
+            </p>
+        </div>
+
+        <!-- Category Stats -->
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+            <div class="flex items-center justify-center space-x-8 text-center">
+                <div>
+                    <div class="text-3xl font-bold text-primary">{{ posts.count }}</div>
+                    <div class="text-gray-600">Total Articles</div>
+                </div>
+                <div>
+                    <div class="text-3xl font-bold text-primary">{{ posts.count }}</div>
+                    <div class="text-gray-600">Published</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Posts Grid -->
+        {% if posts %}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for post in posts %}
+            <article class="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all hover-lift">
+                <div class="relative">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" 
+                         alt="{{ post.title }}" 
+                         class="w-full h-48 object-cover">
+                    {% else %}
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop" 
+                         alt="{{ post.title }}" 
+                         class="w-full h-48 object-cover">
+                    {% endif %}
+                    <div class="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
+                        {{ post.category.name }}
+                    </div>
+                    {% if post.is_featured %}
+                    <div class="absolute top-4 right-4 bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                        Featured
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center text-sm text-gray-500 mb-3">
+                        <svg class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 002 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>{{ post.published_date|date:"F j, Y" }}</span>
+                        <span class="mx-2">•</span>
+                        <span>{% if post.estimated_reading_time %}{{ post.estimated_reading_time }} min read{% else %}5 min read{% endif %}</span>
+                    </div>
+                    <h3 class="text-xl font-medium mb-3 text-gray-900">
+                        {{ post.title }}
+                    </h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">
+                        {{ post.excerpt }}
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            {% if post.author.photo %}
+                            <img src="{{ post.author.photo.url }}" 
+                                 alt="{{ post.author.name }}" class="h-8 w-8 rounded-full mr-3 object-cover">
+                            {% else %}
+                            <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=40&h=40&fit=crop&crop=face" 
+                                 alt="{{ post.author.name }}" class="h-8 w-8 rounded-full mr-3 object-cover">
+                            {% endif %}
+                            <span class="text-sm text-gray-600">By {{ post.author.name }}</span>
+                        </div>
+                        <a href="{% url 'blog_detail' post.slug %}" class="text-primary hover:text-primary/80 font-medium text-sm">
+                            Read More →
+                        </a>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-12">
+            <div class="text-gray-400 mb-4">
+                <svg class="mx-auto h-12 w-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+            </div>
+            <h3 class="text-lg font-medium text-gray-900 mb-2">No articles found</h3>
+            <p class="text-gray-600">There are no published articles in this category yet.</p>
+        </div>
+        {% endif %}
+
+        <!-- Other Categories -->
+        {% if other_categories %}
+        <div class="mt-16">
+            <h2 class="text-2xl font-medium text-gray-900 mb-8">Explore Other Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                {% for other_category in other_categories %}
+                <a href="{% url 'category_detail' other_category.slug %}" 
+                   class="bg-white border border-gray-200 rounded-lg p-4 text-center hover:border-primary hover:shadow-md transition-all">
+                    <h3 class="font-medium text-gray-900 mb-2">{{ other_category.name }}</h3>
+                    <p class="text-sm text-gray-600">{{ other_category.blogpost_set.count }} articles</p>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h3 class="text-2xl font-bold mb-4">The One Solution</h3>
+                <p class="text-gray-400 mb-6">Your trusted partner in digital marketing and business growth</p>
+                <div class="flex justify-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Facebook</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">LinkedIn</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
