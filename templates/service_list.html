@@ -234,10 +234,10 @@
                     Let's discuss how our services can help your business grow and succeed in the digital world.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#" class="bg-primary text-primary-foreground px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary/90 transition-colors">
+                    <a href="{% url 'contact' %}" class="bg-primary text-primary-foreground px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary/90 transition-colors">
                         Get Free Consultation
                     </a>
-                    <a href="#" class="bg-transparent text-primary border-2 border-primary px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary hover:text-primary-foreground transition-colors">
+                    <a href="{% url 'portfolio' %}" class="bg-transparent text-primary border-2 border-primary px-8 py-3 rounded-lg text-lg font-medium hover:bg-primary hover:text-primary-foreground transition-colors">
                         View Our Work
                     </a>
                 </div>
@@ -290,7 +290,7 @@
                         <li><a href="" class="hover:text-white transition-colors">About Us</a></li>
                         <li><a href="" class="hover:text-white transition-colors">Portfolio</a></li>
                         <li><a href="{% url 'blog_list' %}" class="hover:text-white transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="{% url 'contact' %}" class="hover:text-white transition-colors">Contact</a></li>
                     </ul>
                 </div>
             </div>

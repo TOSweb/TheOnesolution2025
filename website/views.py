@@ -1,7 +1,18 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Service, BlogPost, Portfolio, Testimonial, BlogCategory, BlogTag
+from django.contrib import messages
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.http import require_http_methods
+from django.utils.decorators import method_decorator
+from django.core.exceptions import ValidationError
+from django.utils import timezone
+from django.db.models import Q
+from django.conf import settings
+import json
+import re
+from .models import Service, BlogPost, Portfolio, Testimonial, BlogCategory, BlogTag, PortfolioCategory, Contact
 import random
 
 def index(request):
@@ -222,3 +233,136 @@ def portfolio_detail(request, slug):
 def about(request):
     """View for the about page"""
     return render(request, 'about.html')
+
+# Security and spam prevention functions
+def is_spam_submission(request, data):
+    """Check if submission is likely spam"""
+    # Check for rapid submissions (same IP within 1 hour)
+    ip_address = get_client_ip(request)
+    recent_submissions = Contact.objects.filter(
+        ip_address=ip_address,
+        created_at__gte=timezone.now() - timezone.timedelta(hours=1)
+    ).count()
+    
+    if recent_submissions >= 3:
+        return True, "Too many submissions from this IP address"
+    
+    # Check for suspicious content patterns
+    message = data.get('message', '').lower()
+    name = data.get('name', '').lower()
+    
+    # Common spam patterns
+    spam_patterns = [
+        r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',
+        r'\b(viagra|cialis|casino|poker|loan|credit|debt|weight loss|diet)\b',
+        r'[A-Z]{5,}',  # Too many consecutive capitals
+        r'\b(free|money|cash|earn|income|profit|rich|wealth)\b',
+    ]
+    
+    for pattern in spam_patterns:
+        if re.search(pattern, message) or re.search(pattern, name):
+            return True, "Suspicious content detected"
+    
+    # Check for very short messages (likely spam)
+    if len(message.strip()) < 10:
+        return True, "Message too short"
+    
+    # Check for very long messages (potential spam)
+    if len(message.strip()) > 2000:
+        return True, "Message too long"
+    
+    return False, None
+
+def get_client_ip(request):
+    """Get client IP address"""
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+@csrf_protect
+@require_http_methods(["POST"])
+def contact_form_submit(request):
+    """Secure contact form submission endpoint"""
+    if request.method == 'POST':
+        try:
+            # Get form data
+            data = {
+                'name': request.POST.get('name', '').strip(),
+                'email': request.POST.get('email', '').strip(),
+                'phone': request.POST.get('phone', '').strip(),
+                'company': request.POST.get('company', '').strip(),
+                'service_interest': request.POST.get('service_interest', '').strip(),
+                'message': request.POST.get('message', '').strip(),
+            }
+            
+            # Basic validation
+            if not all([data['name'], data['email'], data['message']]):
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Please fill in all required fields.'
+                }, status=400)
+            
+            # Email validation
+            if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', data['email']):
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Please enter a valid email address.'
+                }, status=400)
+            
+            # Check for spam
+            is_spam, spam_reason = is_spam_submission(request, data)
+            if is_spam:
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Submission blocked for security reasons.'
+                }, status=429)
+            
+            # Create contact submission
+            contact = Contact.objects.create(
+                name=data['name'],
+                email=data['email'],
+                phone=data['phone'],
+                company=data['company'],
+                service_interest=data['service_interest'],
+                message=data['message'],
+                ip_address=get_client_ip(request),
+                user_agent=request.META.get('HTTP_USER_AGENT', ''),
+                referrer=request.META.get('HTTP_REFERER', ''),
+                status='new' if not is_spam else 'spam',
+                is_spam=is_spam
+            )
+            
+            # Log successful submission
+            print(f"Contact form submitted by {data['name']} ({data['email']}) from IP {get_client_ip(request)}")
+            
+            return JsonResponse({
+                'success': True,
+                'message': 'Thank you for your message! We will get back to you soon.',
+                'submission_id': contact.id
+            })
+            
+        except Exception as e:
+            # Log error for debugging
+            print(f"Contact form error: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': 'An error occurred. Please try again later.'
+            }, status=500)
+    
+    return JsonResponse({
+        'success': False,
+        'message': 'Invalid request method.'
+    }, status=405)
+
+def contact_page(request):
+    """Contact page view"""
+    # Get services for the service interest dropdown
+    services = Service.objects.filter(is_active=True).order_by('order', 'title')
+    
+    context = {
+        'services': services,
+    }
+    return render(request, 'contact.html', context)

@@ -696,14 +696,49 @@ class Contact(models.Model):
     company = models.CharField(max_length=200, blank=True)
     service_interest = models.CharField(max_length=200, blank=True)
     message = models.TextField()
+    
+    # Security and spam prevention fields
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
+    user_agent = models.TextField(blank=True)
+    referrer = models.URLField(blank=True)
+    
+    # Status tracking
     is_read = models.BooleanField(default=False)
+    is_spam = models.BooleanField(default=False)
+    status = models.CharField(
+        max_length=20,
+        choices=[
+            ('new', 'New'),
+            ('in_progress', 'In Progress'),
+            ('completed', 'Completed'),
+            ('spam', 'Spam'),
+        ],
+        default='new'
+    )
+    
+    # Admin notes
+    admin_notes = models.TextField(blank=True)
+    
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name = "Contact Submission"
+        verbose_name_plural = "Contact Submissions"
 
     def __str__(self):
-        return f"{self.name} - {self.email}"
+        return f"{self.name} - {self.email} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
+    
+    def get_absolute_url(self):
+        return reverse('admin:website_contact_change', args=[str(self.id)])
+    
+    @property
+    def is_recent(self):
+        """Check if submission is within last 24 hours"""
+        from django.utils import timezone
+        from datetime import timedelta
+        return self.created_at > timezone.now() - timedelta(hours=24)
 
 class Newsletter(models.Model):
     """Model for newsletter subscriptions"""

@@ -225,15 +225,12 @@ class PortfolioAdminForm(forms.ModelForm):
         model = Portfolio
         fields = '__all__'
         widgets = {
-            'description': TinyMCEWidget(),
             'short_description': TinyMCEWidget(),
             'full_description': TinyMCEWidget(),
             'challenge': TinyMCEWidget(),
             'solution': TinyMCEWidget(),
             'implementation': TinyMCEWidget(),
             'results_summary': TinyMCEWidget(),
-            'metrics': TinyMCEWidget(),
-            'technologies_used': TinyMCEWidget(),
             'client_testimonial': TinyMCEWidget(),
             'meta_description': TinyMCEWidget(),
             'og_description': TinyMCEWidget(),
@@ -267,20 +264,27 @@ class PortfolioAdmin(admin.ModelAdmin):
     formfield_overrides = {
         models.JSONField: {'widget': JSONEditorWidget},
     }
-    filter_horizontal = ['related_services']
+    filter_horizontal = ['related_services', 'related_portfolios']
     fieldsets = (
         ('Project Information', {
             'fields': ('title', 'slug', 'client_name', 'category', 'short_description', 'full_description', 'featured_image')
         }),
         ('Project Details', {
-            'fields': ('challenge', 'solution', 'implementation', 'technologies_used', 'project_duration', 'team_size')
+            'fields': ('challenge', 'solution', 'implementation')
         }),
         ('Results & Metrics', {
             'fields': ('results_summary', 'before_image', 'after_image'),
             'description': 'Add metrics using the inline form below'
         }),
         ('Client Feedback', {
-            'fields': ('client_testimonial', 'client_position', 'client_company')
+            'fields': ('client_testimonial', 'client_position', 'client_company', 'client_logo')
+        }),
+        ('Project Settings', {
+            'fields': ('is_featured', 'order', 'project_location', 'project_industry', 'project_budget')
+        }),
+        ('Related Content', {
+            'fields': ('related_services', 'related_portfolios'),
+            'classes': ('collapse',)
         }),
         ('SEO & Social Media', {
             'fields': ('meta_title', 'meta_description', 'meta_keywords', 'canonical_url', 'schema_markup'),
@@ -410,24 +414,46 @@ class TestimonialAdmin(admin.ModelAdmin):
 
 @admin.register(Contact)
 class ContactAdmin(admin.ModelAdmin):
+    list_display = ['name', 'email', 'company', 'service_interest', 'status', 'is_read', 'is_spam', 'created_at']
+    list_filter = ['status', 'is_read', 'is_spam', 'created_at', 'service_interest']
+    list_editable = ['status', 'is_read', 'is_spam']
+    search_fields = ['name', 'email', 'company', 'message', 'service_interest']
+    readonly_fields = ['created_at', 'updated_at', 'ip_address', 'user_agent', 'referrer']
+    ordering = ['-created_at']
     
-    list_display = ['name', 'email', 'company', 'is_read', 'created_at']
-    list_filter = ['is_read', 'created_at']
-    list_editable = ['is_read']
-    search_fields = ['name', 'email', 'company', 'message']
-    readonly_fields = ['created_at']
     fieldsets = (
         ('Contact Information', {
             'fields': ('name', 'email', 'phone', 'company', 'service_interest', 'message')
         }),
-        ('Status', {
-            'fields': ('is_read',)
+        ('Status & Processing', {
+            'fields': ('status', 'is_read', 'is_spam', 'admin_notes')
+        }),
+        ('Security & Tracking', {
+            'fields': ('ip_address', 'user_agent', 'referrer', 'submission_time'),
+            'classes': ('collapse',)
         }),
         ('Timestamps', {
-            'fields': ('created_at',),
+            'fields': ('created_at', 'updated_at'),
             'classes': ('collapse',)
         }),
     )
+    
+    actions = ['mark_as_read', 'mark_as_spam', 'mark_as_completed']
+    
+    def mark_as_read(self, request, queryset):
+        updated = queryset.update(is_read=True, status='in_progress')
+        self.message_user(request, f'{updated} contact submissions marked as read.')
+    mark_as_read.short_description = "Mark selected submissions as read"
+    
+    def mark_as_spam(self, request, queryset):
+        updated = queryset.update(is_spam=True, status='spam')
+        self.message_user(request, f'{updated} contact submissions marked as spam.')
+    mark_as_spam.short_description = "Mark selected submissions as spam"
+    
+    def mark_as_completed(self, request, queryset):
+        updated = queryset.update(status='completed')
+        self.message_user(request, f'{updated} contact submissions marked as completed.')
+    mark_as_completed.short_description = "Mark selected submissions as completed"
 
 @admin.register(Newsletter)
 class NewsletterAdmin(admin.ModelAdmin):
