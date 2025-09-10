@@ -101,6 +101,14 @@ def service_detail(request, slug):
 
 def blog_list(request):
     """View for listing all published blog posts"""
+
+    query = request.GET.get("q", "").strip()
+
+    # Base queryset
+    posts = BlogPost.objects.filter(status="published")
+
+    if query:
+        posts = posts.filter(Q(title__icontains=query) | Q(excerpt__icontains=query))
     # Get featured posts (up to 5 featured published posts)
     featured_posts = BlogPost.objects.filter(
         status='published', 
@@ -131,9 +139,23 @@ def blog_list(request):
         'categories': categories,
         'category_posts': category_posts,
         'tags': tags,
+        "query": query,
     }
     
     return render(request, 'blog_list.html', context)
+
+def blog_suggestions(request):
+    """AJAX endpoint for live search suggestions"""
+    query = request.GET.get("q", "").strip()
+    suggestions = []
+
+    if query:
+        qs = BlogPost.objects.filter(
+            status="published", title__icontains=query
+        ).order_by("-published_date")[:5]
+        suggestions = [{"title": p.title, "url": p.get_absolute_url()} for p in qs]
+
+    return JsonResponse({"results": suggestions})
 
 def blog_detail(request, slug):
     """View for displaying a single blog post"""

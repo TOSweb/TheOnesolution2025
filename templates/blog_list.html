@@ -166,19 +166,27 @@
             </p>
             
             <!-- Search and Filter Bar -->
-            <div class="max-w-2xl mx-auto">
+            <div class="max-w-2xl mx-auto relative">
                 <div class="flex flex-col sm:flex-row gap-4">
                     <div class="flex-1">
                         <div class="relative">
-                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
-                            <input type="text" placeholder="Search articles..." 
-                                   class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
+                            <input type="text" id="search-input"
+                                placeholder="Search articles..."
+                                class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary">
                         </div>
                     </div>
                 </div>
+
+                <!-- Suggestions dropdown -->
+                <div id="suggestions"
+                    class="absolute w-full bg-white border border-gray-200 rounded-lg shadow-lg mt-1 hidden z-50"></div>
             </div>
+
             
             <!-- Category Capsules -->
             <div class="max-w-4xl mx-auto mt-8">
@@ -385,17 +393,7 @@
                     </ul>
                 </div>
 
-                <div>
-                    <h3 class="text-white font-medium mb-4">Company</h3>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Our Team</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Case Studies</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Portfolio</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-                    </ul>
-                </div>
+                
             </div>
 
             <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
@@ -538,5 +536,40 @@
             });
         }
     </script>
+
+    <script>
+const input = document.getElementById("search-input");
+const suggestionsBox = document.getElementById("suggestions");
+
+input.addEventListener("keyup", function() {
+    const query = this.value.trim();
+    if (query.length < 2) {
+        suggestionsBox.classList.add("hidden");
+        return;
+    }
+
+    fetch(`/blogs/suggestions/?q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.results.length > 0) {
+                suggestionsBox.innerHTML = data.results.map(
+                    item => `<a href="${item.url}" 
+                               class="block px-4 py-2 hover:bg-gray-100">${item.title}</a>`
+                ).join("");
+                suggestionsBox.classList.remove("hidden");
+            } else {
+                suggestionsBox.classList.add("hidden");
+            }
+        });
+});
+
+// Hide suggestions when clicking outside
+document.addEventListener("click", (e) => {
+    if (!input.contains(e.target) && !suggestionsBox.contains(e.target)) {
+        suggestionsBox.classList.add("hidden");
+    }
+});
+</script>
+
 </body>
 </html>

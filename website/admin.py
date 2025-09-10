@@ -429,7 +429,7 @@ class ContactAdmin(admin.ModelAdmin):
             'fields': ('status', 'is_read', 'is_spam', 'admin_notes')
         }),
         ('Security & Tracking', {
-            'fields': ('ip_address', 'user_agent', 'referrer', 'submission_time'),
+            'fields': ('ip_address', 'user_agent', 'referrer'),
             'classes': ('collapse',)
         }),
         ('Timestamps', {
