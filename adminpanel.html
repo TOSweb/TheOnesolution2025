@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Panel{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#eff6ff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#1e3a8a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom animations */
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        
+        .slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        /* Custom scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden hidden"></div>
+    
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-0 left-0 z-50 w-72 h-screen bg-white shadow-xl transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+        <div class="flex flex-col h-full">
+            <!-- Logo Section -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-700 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-crown text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-800">AdminPanel</h1>
+                        <p class="text-xs text-gray-500">Dashboard v2.0</p>
+                    </div>
+                </div>
+                <button id="close-sidebar" class="lg:hidden text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <nav class="flex-1 px-4 py-6 custom-scrollbar overflow-y-auto">
+                <div class="space-y-2">
+                    <!-- Dashboard -->
+                    <a href="{% url 'admin:index' %}" class="flex items-center px-4 py-3 text-gray-700 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors group">
+                        <i class="fas fa-home w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500"></i>
+                        <span class="font-medium">Dashboard</span>
+                    </a>
+                    
+                    <!-- Users Section -->
+                    <div class="pt-4">
+                        <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">User Management</h3>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors group">
+                            <i class="fas fa-users w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500"></i>
+                            <span class="font-medium">Users</span>
+                            <span class="ml-auto bg-primary-100 text-primary-800 text-xs px-2 py-1 rounded-full">12</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors group">
+                            <i class="fas fa-user-shield w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500"></i>
+                            <span class="font-medium">Roles & Permissions</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Content Section -->
+                    <div class="pt-4">
+                        <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Content</h3>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors group">
+                            <i class="fas fa-file-alt w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500"></i>
+                            <span class="font-medium">Posts</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors group">
+                            <i class="fas fa-images w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500"></i>
+                            <span class="font-medium">Media</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors group">
+                            <i class="fas fa-tags w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500"></i>
+                            <span class="font-medium">Categories</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Settings Section -->
+                    <div class="pt-4">
+                        <h3 class="px-4 text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">System</h3>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors group">
+                            <i class="fas fa-cog w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500"></i>
+                            <span class="font-medium">Settings</span>
+                        </a>
+                        <a href="#" class="flex items-center px-4 py-3 text-gray-700 rounded-xl hover:bg-primary-50 hover:text-primary-700 transition-colors group">
+                            <i class="fas fa-chart-bar w-5 h-5 mr-3 text-gray-400 group-hover:text-primary-500"></i>
+                            <span class="font-medium">Analytics</span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- User Profile Section -->
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-50 cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center">
+                        <span class="text-white font-semibold text-sm">{{ user.first_name|first|upper }}{{ user.last_name|first|upper }}</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-800">{{ user.get_full_name|default:user.username }}</p>
+                        <p class="text-xs text-gray-500">{{ user.email }}</p>
+                    </div>
+                    <i class="fas fa-chevron-up text-gray-400 text-sm"></i>
+                </div>
+            </div>
+        </div>
+    </aside>
+    
+    <!-- Main Content -->
+    <div class="lg:ml-72 flex flex-col min-h-screen pb-20">
+        <!-- Top Header -->
+        <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <!-- Mobile menu button -->
+                    <button id="mobile-menu-btn" class="lg:hidden text-gray-400 hover:text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                    
+                    <!-- Search Bar -->
+                    <div class="flex-1 max-w-md mx-4">
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-search text-gray-400"></i>
+                            </div>
+                            <input type="text" placeholder="Search..." class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary-500 focus:border-primary-500">
+                        </div>
+                    </div>
+                    
+                    <!-- Header Actions -->
+                    <div class="flex items-center space-x-4">
+                        <!-- Notifications -->
+                        <button class="relative p-2 text-gray-400 hover:text-gray-600 focus:outline-none">
+                            <i class="fas fa-bell text-lg"></i>
+                            <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                        </button>
+                        
+                        <!-- Messages -->
+                        <button class="relative p-2 text-gray-400 hover:text-gray-600 focus:outline-none">
+                            <i class="fas fa-envelope text-lg"></i>
+                            <span class="absolute -top-1 -right-1 h-4 w-4 bg-primary-500 text-white text-xs rounded-full flex items-center justify-center">2</span>
+                        </button>
+                        
+                        <!-- Logout -->
+                        <a href="{% url 'admin:logout' %}" class="p-2 text-gray-400 hover:text-red-500 focus:outline-none">
+                            <i class="fas fa-sign-out-alt text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Page Content -->
+        <main class="flex-1 p-4 sm:p-6 lg:p-8">
+            <!-- Breadcrumb -->
+            <nav class="mb-6">
+                <ol class="flex items-center space-x-2 text-sm text-gray-500">
+                    <li><a href="{% url 'admin:index' %}" class="hover:text-primary-600">Dashboard</a></li>
+                    {% block breadcrumb %}{% endblock %}
+                </ol>
+            </nav>
+            
+            <!-- Page Header -->
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold text-gray-900">{% block page_title %}Dashboard{% endblock %}</h1>
+                <p class="mt-2 text-gray-600">{% block page_description %}Welcome to your admin dashboard{% endblock %}</p>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="space-y-6">
+                {% block content %}
+                <!-- Default Dashboard Content -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Stats Cards -->
+                    <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Total Users</p>
+                                <p class="text-3xl font-bold text-gray-900">1,234</p>
+                            </div>
+                            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-users text-blue-500 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-green-500 text-sm font-medium">+12%</span>
+                            <span class="text-gray-500 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Active Sessions</p>
+                                <p class="text-3xl font-bold text-gray-900">856</p>
+                            </div>
+                            <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-globe text-green-500 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-green-500 text-sm font-medium">+5%</span>
+                            <span class="text-gray-500 text-sm ml-2">from yesterday</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Revenue</p>
+                                <p class="text-3xl font-bold text-gray-900">$24,580</p>
+                            </div>
+                            <div class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-dollar-sign text-purple-500 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-red-500 text-sm font-medium">-2%</span>
+                            <span class="text-gray-500 text-sm ml-2">from last week</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-sm font-medium text-gray-600">Orders</p>
+                                <p class="text-3xl font-bold text-gray-900">342</p>
+                            </div>
+                            <div class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-shopping-cart text-orange-500 text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex items-center">
+                            <span class="text-green-500 text-sm font-medium">+18%</span>
+                            <span class="text-gray-500 text-sm ml-2">from last month</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Charts and Tables Section -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Recent Activity</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-user-plus text-blue-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">New user registered</p>
+                                    <p class="text-xs text-gray-500">2 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-shopping-bag text-green-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Order completed</p>
+                                    <p class="text-xs text-gray-500">5 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-file-alt text-purple-500"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-sm font-medium text-gray-900">Report generated</p>
+                                    <p class="text-xs text-gray-500">1 hour ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <button class="p-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105">
+                                <i class="fas fa-plus text-lg mb-2"></i>
+                                <p class="text-sm font-medium">Add User</p>
+                            </button>
+                            <button class="p-4 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-200 transform hover:scale-105">
+                                <i class="fas fa-file-export text-lg mb-2"></i>
+                                <p class="text-sm font-medium">Export Data</p>
+                            </button>
+                            <button class="p-4 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105">
+                                <i class="fas fa-cog text-lg mb-2"></i>
+                                <p class="text-sm font-medium">Settings</p>
+                            </button>
+                            <button class="p-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-200 transform hover:scale-105">
+                                <i class="fas fa-chart-line text-lg mb-2"></i>
+                                <p class="text-sm font-medium">Analytics</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+            </div>
+        </main>
+    </div>
+    
+    <!-- Bottom Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-lg lg:hidden">
+        <div class="flex items-center justify-around py-2">
+            <a href="{% url 'admin:index' %}" class="flex flex-col items-center py-2 px-3 text-gray-600 hover:text-primary-600 transition-colors">
+                <i class="fas fa-home text-lg mb-1"></i>
+                <span class="text-xs font-medium">Home</span>
+            </a>
+            <a href="#" class="flex flex-col items-center py-2 px-3 text-gray-600 hover:text-primary-600 transition-colors">
+                <i class="fas fa-users text-lg mb-1"></i>
+                <span class="text-xs font-medium">Users</span>
+            </a>
+            <a href="#" class="flex flex-col items-center py-2 px-3 text-gray-600 hover:text-primary-600 transition-colors">
+                <i class="fas fa-file-alt text-lg mb-1"></i>
+                <span class="text-xs font-medium">Content</span>
+            </a>
+            <a href="#" class="flex flex-col items-center py-2 px-3 text-gray-600 hover:text-primary-600 transition-colors">
+                <i class="fas fa-chart-bar text-lg mb-1"></i>
+                <span class="text-xs font-medium">Reports</span>
+            </a>
+            <a href="#" class="flex flex-col items-center py-2 px-3 text-gray-600 hover:text-primary-600 transition-colors relative">
+                <i class="fas fa-bell text-lg mb-1"></i>
+                <span class="text-xs font-medium">Alerts</span>
+                <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+            </a>
+        </div>
+    </nav>
+    
+    <!-- Additional Bottom Menu (Extended) -->
+    <div class="hidden lg:block fixed bottom-6 right-6 z-50">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-4">
+            <div class="flex items-center space-x-4">
+                <button class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all duration-200 transform hover:scale-105 flex items-center justify-center">
+                    <i class="fas fa-cog"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-menu-overlay');
+        const closeSidebar = document.getElementById('close-sidebar');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.remove('-translate-x-full');
+            overlay.classList.remove('hidden');
+            sidebar.classList.add('slide-in');
+        });
+        
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        });
+        
+        overlay.addEventListener('click', () => {
+            sidebar.classList.add('-translate-x-full');
+            overlay.classList.add('hidden');
+        });
+        
+        // Auto-hide mobile menu on window resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.add('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+        
+        // Add smooth scrolling behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
