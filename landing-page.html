@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedTech Summit 2025 - Advanced Healthcare Conference</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        .nav-item {
+            position: relative;
+        }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 50%;
+            background: #667eea;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-item:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold gradient-text">MedTech Summit 2025</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-item text-gray-700 hover:text-purple-600 font-medium">Home</a>
+                    <a href="#about" class="nav-item text-gray-700 hover:text-purple-600 font-medium">About</a>
+                    <a href="#programs" class="nav-item text-gray-700 hover:text-purple-600 font-medium">Programs</a>
+                    <a href="#speakers" class="nav-item text-gray-700 hover:text-purple-600 font-medium">Speakers</a>
+                    <a href="#submission" class="nav-item text-gray-700 hover:text-purple-600 font-medium">Submissions</a>
+                    <a href="#team" class="nav-item text-gray-700 hover:text-purple-600 font-medium">Team</a>
+                    <a href="#register" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-full hover:shadow-lg transition">Register Now</a>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-purple-600">Home</a>
+                <a href="#about" class="block text-gray-700 hover:text-purple-600">About</a>
+                <a href="#programs" class="block text-gray-700 hover:text-purple-600">Programs</a>
+                <a href="#speakers" class="block text-gray-700 hover:text-purple-600">Speakers</a>
+                <a href="#submission" class="block text-gray-700 hover:text-purple-600">Submissions</a>
+                <a href="#team" class="block text-gray-700 hover:text-purple-600">Team</a>
+                <a href="#register" class="block bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-full text-center">Register Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-20 gradient-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-fade-in-up">
+                    <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Shaping the Future of Healthcare</h1>
+                    <p class="text-xl mb-8 text-purple-100">Join leading medical professionals and innovators at the premier healthcare conference of 2025</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#register" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:shadow-2xl transition text-center">Register Now</a>
+                        <a href="#programs" class="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition text-center">View Programs</a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-6 mt-12">
+                        <div>
+                            <div class="text-4xl font-bold">250+</div>
+                            <div class="text-purple-200">Attendees</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold">50+</div>
+                            <div class="text-purple-200">Speakers</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-bold">3</div>
+                            <div class="text-purple-200">Days</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Medical Conference" class="rounded-2xl shadow-lg">
+                        <div class="mt-6 text-center">
+                            <div class="text-2xl font-bold mb-2">March 15-17, 2026</div>
+                            <div class="text-purple-200">Grand Convention Center, New York</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">About MedTech Summit</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">A premier gathering of healthcare professionals, researchers, and innovators dedicated to advancing medical science and patient care</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-2xl hover-lift">
+                    <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">World-Class Speakers</h3>
+                    <p class="text-gray-600">Learn from renowned physicians, surgeons, and healthcare innovators leading breakthrough research worldwide</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-2xl hover-lift">
+                    <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Networking Opportunities</h3>
+                    <p class="text-gray-600">Connect with peers, establish collaborations, and build relationships with key stakeholders in healthcare</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-8 rounded-2xl hover-lift">
+                    <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mb-6">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Cutting-Edge Research</h3>
+                    <p class="text-gray-600">Discover the latest research findings, clinical trials, and technological innovations shaping modern medicine</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Conference Programs</h2>
+                <p class="text-xl text-gray-600">Explore our comprehensive schedule of workshops, keynotes, and sessions</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center">
+                        <span class="text-white text-6xl font-bold">Day 1</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Opening Ceremonies & Keynotes</h3>
+                        <p class="text-gray-600 mb-4">Welcome address, inaugural keynote on AI in Healthcare, and opening panel discussion</p>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>9:00 AM - Registration & Welcome</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>10:30 AM - Keynote: Future of Medicine</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>2:00 PM - Workshop Sessions Begin</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center">
+                        <span class="text-white text-6xl font-bold">Day 2</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Clinical Excellence & Innovation</h3>
+                        <p class="text-gray-600 mb-4">Paper presentations, clinical case studies, and breakthrough research sessions</p>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>9:00 AM - Paper Presentations</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>12:00 PM - Poster Sessions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>3:00 PM - Innovation Showcase</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover-lift">
+                    <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                        <span class="text-white text-6xl font-bold">Day 3</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-3 text-gray-800">Future Directions & Networking</h3>
+                        <p class="text-gray-600 mb-4">Panel discussions, awards ceremony, and closing networking reception</p>
+                        <ul class="space-y-2 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>9:00 AM - Panel Discussions</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>1:00 PM - Awards Ceremony</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>4:00 PM - Closing Reception</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section id="speakers" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Featured Speakers</h2>
+                <p class="text-xl text-gray-600">Meet our distinguished panel of healthcare experts and innovators</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center hover-lift">
+                    <div class="relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400" alt="Speaker" class="w-48 h-48 rounded-full mx-auto object-cover shadow-xl">
+                        <div class="absolute bottom-0 right-1/4 bg-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">Keynote</div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Dr. Sarah Mitchell</h3>
+                    <p class="text-purple-600 font-semibold mb-2">Chief of Cardiology</p>
+                    <p class="text-gray-600 text-sm">Harvard Medical School</p>
+                </div>
+                <div class="text-center hover-lift">
+                    <div class="relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400" alt="Speaker" class="w-48 h-48 rounded-full mx-auto object-cover shadow-xl">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Dr. James Chen</h3>
+                    <p class="text-purple-600 font-semibold mb-2">Neurosurgeon</p>
+                    <p class="text-gray-600 text-sm">Mayo Clinic</p>
+                </div>
+                <div class="text-center hover-lift">
+                    <div class="relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400" alt="Speaker" class="w-48 h-48 rounded-full mx-auto object-cover shadow-xl">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Dr. Priya Sharma</h3>
+                    <p class="text-purple-600 font-semibold mb-2">AI Researcher</p>
+                    <p class="text-gray-600 text-sm">Stanford Medicine</p>
+                </div>
+                <div class="text-center hover-lift">
+                    <div class="relative mb-6">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400" alt="Speaker" class="w-48 h-48 rounded-full mx-auto object-cover shadow-xl">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Dr. Michael Roberts</h3>
+                    <p class="text-purple-600 font-semibold mb-2">Oncology Director</p>
+                    <p class="text-gray-600 text-sm">Johns Hopkins Hospital</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submission Section -->
+    <section id="submission" class="py-20 bg-gradient-to-br from-purple-50 to-indigo-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Call for Papers</h2>
+                <p class="text-xl text-gray-600">Submit your research and clinical findings for presentation at MedTech Summit 2025</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+                <div class="mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Submission Categories</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">1</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Original Research Papers</h4>
+                                <p class="text-gray-600">Present your latest research findings and clinical studies</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">2</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Case Studies</h4>
+                                <p class="text-gray-600">Share unique clinical cases and treatment approaches</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                                <span class="text-white font-bold">3</span>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Poster Presentations</h4>
+                                <p class="text-gray-600">Display your work in our dedicated poster session</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-purple-50 rounded-xl p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Important Dates</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold text-purple-600">Abstract Submission Deadline</p>
+                            <p class="text-gray-700">December 15, 2025</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-purple-600">Notification of Acceptance</p>
+                            <p class="text-gray-700">January 20, 2026</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-purple-600">Full Paper Submission</p>
+                            <p class="text-gray-700">February 15, 2026</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-purple-600">Conference Dates</p>
+                            <p class="text-gray-700">March 15-17, 2026</p>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="alert('Submission portal will redirect to your dedicated submission platform')" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-2xl transition text-lg">
+                    Submit Your Paper
+                </button>
+                <p class="text-center text-sm text-gray-500 mt-4">Submissions will be handled through our dedicated submission portal</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Organizing Committee</h2>
+                <p class="text-xl text-gray-600">Meet the dedicated team behind MedTech Summit 2025</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 hover-lift">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg">
+                    <h3 class="text-xl font-bold text-center mb-2">Dr. Emily Richardson</h3>
+                    <p class="text-purple-600 text-center font-semibold mb-2">Conference Chair</p>
+                    <p class="text-gray-600 text-center text-sm">Leading healthcare innovation for over 20 years</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 hover-lift">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg">
+                    <h3 class="text-xl font-bold text-center mb-2">Dr. Robert Anderson</h3>
+                    <p class="text-purple-600 text-center font-semibold mb-2">Scientific Director</p>
+                    <p class="text-gray-600 text-center text-sm">Expert in medical research and clinical trials</p>
+                </div>
+                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 hover-lift">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover shadow-lg">
+                    <h3 class="text-xl font-bold text-center mb-2">Dr. Lisa Martinez</h3>
+                    <p class="text-purple-600 text-center font-semibold mb-2">Program Coordinator</p>
+                    <p class="text-gray-600 text-center text-sm">Specializing in medical education and training</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="register" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold gradient-text mb-4">Register for MedTech Summit 2025</h2>
+                <p class="text-xl text-gray-600">Secure your spot at the premier healthcare conference</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">Early Bird</h3>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">$399</div>
+                    <p class="text-gray-600 mb-6">Until Dec 31, 2025</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Lunch & refreshments</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Networking events</span>
+                        </li>
+                    </ul>
+                    <button onclick="handleRegistration('early-bird')" class="w-full bg-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-700 transition">Select Plan</button>
+                </div>
+                <div class="bg-gradient-to-br from-purple-600 to-indigo-600 rounded-2xl p-8 shadow-2xl hover-lift transform scale-105">
+                    <div class="bg-yellow-400 text-gray-900 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">POPULAR</div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Standard</h3>
+                    <div class="text-4xl font-bold text-white mb-2">$599</div>
+                    <p class="text-purple-100 mb-6">Regular pricing</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-yellow-400 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">All Early Bird benefits</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-yellow-400 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">Workshop access</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-yellow-400 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">Certificate of attendance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-yellow-400 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-white">Digital proceedings</span>
+                        </li>
+                    </ul>
+                    <button onclick="handleRegistration('standard')" class="w-full bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Select Plan</button>
+                </div>
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover-lift">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800">VIP</h3>
+                    <div class="text-4xl font-bold text-purple-600 mb-2">$999</div>
+                    <p class="text-gray-600 mb-6">Premium experience</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">All Standard benefits</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">VIP lounge access</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Speaker meet & greet</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Premium seating</span>
+                        </li>
+                    </ul>
+                    <button onclick="handleRegistration('vip')" class="w-full bg-purple-600 text-white px-6 py-3 rounded-full font-semibold hover:bg-purple-700 transition">Select Plan</button>
+                </div>
+            </div>
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
+                <div class="flex">
+                    <svg class="w-6 h-6 text-blue-500 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <div>
+                        <h4 class="font-bold text-blue-900 mb-2">Registration Process</h4>
+                        <p class="text-blue-800 text-sm">After selecting your plan, you'll be redirected to our secure payment gateway. Upon successful payment, you will receive a confirmation email with your event tickets and conference details directly from the payment portal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 gradient-bg text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold mb-4">Stay Updated</h2>
+            <p class="text-xl text-purple-100 mb-8">Subscribe to our newsletter for the latest conference updates, speaker announcements, and healthcare insights</p>
+            <form onsubmit="handleNewsletter(event)" class="flex flex-col sm:flex-row gap-4 max-w-2xl mx-auto">
+                <input type="email" id="newsletterEmail" placeholder="Enter your email address" required class="flex-1 px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-purple-300">
+                <button type="submit" class="bg-white text-purple-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition whitespace-nowrap">Subscribe Now</button>
+            </form>
+            <p class="text-sm text-purple-200 mt-4">Join 5,000+ healthcare professionals receiving our updates</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">MedTech Summit</h3>
+                    <p class="text-gray-400">Advancing healthcare through innovation, collaboration, and excellence</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-gray-400 hover:text-purple-400 transition">About</a></li>
+                        <li><a href="#programs" class="text-gray-400 hover:text-purple-400 transition">Programs</a></li>
+                        <li><a href="#speakers" class="text-gray-400 hover:text-purple-400 transition">Speakers</a></li>
+                        <li><a href="#register" class="text-gray-400 hover:text-purple-400 transition">Register</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Information</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#submission" class="text-gray-400 hover:text-purple-400 transition">Submissions</a></li>
+                        <li><a href="#team" class="text-gray-400 hover:text-purple-400 transition">Our Team</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition">Accommodation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-purple-400 transition">Travel Info</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Email: info@medtechsummit.com</li>
+                        <li>Phone: +1 (555) 123-4567</li>
+                        <li>Grand Convention Center</li>
+                        <li>New York, NY 10001</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 MedTech Summit. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Registration handler
+        function handleRegistration(plan) {
+            alert(`Registration Process:\n\n1. You will be redirected to our secure payment gateway\n2. Complete the payment for the ${plan} plan\n3. Payment gateway will generate your unique ticket\n4. Confirmation email with event tickets will be sent by the payment portal\n\nNote: The payment link is generated by the payment portal, not this website.`);
+            // In production, redirect to payment gateway
+            // window.location.href = 'https://payment-gateway.com/medtech-summit?plan=' + plan;
+        }
+
+        // Newsletter handler
+        function handleNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            alert(`Thank you for subscribing!\n\nYou'll receive conference updates at: ${email}`);
+            document.getElementById('newsletterEmail').value = '';
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.hover-lift').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+</body>
+</html>
+
+<!-- ="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">All 3 days access</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span class="text-gray-700">Conference materials</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap -->

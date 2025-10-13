@@ -1,0 +1,410 @@
+{% include 'new/index.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <!-- Gradient Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50 to-blue-50"></div>
+    
+    <!-- Animated Gradient Orbs -->
+    <div class="absolute top-20 left-10 w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow"></div>
+    <div class="absolute top-40 right-10 w-72 h-72 bg-emerald-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow-delay-1"></div>
+    <div class="absolute -bottom-8 left-1/2 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse-slow-delay-2"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <div class="fade-in-up">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 text-emerald-700 mb-6">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+                <span class="text-sm font-medium">Award-Winning Digital Marketing Agency</span>
+            </div>
+        </div>
+
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 gradient-text fade-in-up">
+            Elevate Your Brand<br />to New Heights
+        </h1>
+
+        <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8 fade-in-up">
+            We craft data-driven digital strategies that transform businesses.
+            From SEO to social media, we deliver results that matter.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-20 fade-in-up">
+            <button class="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white text-lg px-8 py-3 rounded-md transition-all flex items-center gap-2 group">
+                Start Your Journey
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+            </button>
+            <button class="text-lg px-8 py-3 border-2 border-gray-300 rounded-md hover:bg-gray-50 transition-all">
+                View Our Work
+            </button>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto fade-in-up">
+            <div class="text-center">
+                <div class="text-3xl sm:text-4xl font-bold gradient-text">500+</div>
+                <div class="text-sm text-gray-600 mt-1">Projects Completed</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl sm:text-4xl font-bold gradient-text">98%</div>
+                <div class="text-sm text-gray-600 mt-1">Client Satisfaction</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl sm:text-4xl font-bold gradient-text">50+</div>
+                <div class="text-sm text-gray-600 mt-1">Team Members</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl sm:text-4xl font-bold gradient-text">10+</div>
+                <div class="text-sm text-gray-600 mt-1">Years Experience</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-4 gradient-text">Our Services</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Comprehensive digital marketing solutions tailored to your business needs
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Service 1 -->
+            <div class="fade-in-up group">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1743796055664-3473eedab36e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxTRU8lMjBhbmFseXRpY3MlMjBsYXB0b3B8ZW58MXx8fHwxNzU5OTg5NDUwfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="SEO Optimization" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-teal-600 to-teal-700 text-white text-sm mb-2">Featured</div>
+                            <h3 class="text-xl font-bold text-white">SEO Optimization</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Boost your visibility with cutting-edge SEO strategies that drive organic traffic and improve rankings.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2 -->
+            <div class="fade-in-up group">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMG1hcmtldGluZ3xlbnwxfHx8fDE3NTk5MjYxNTB8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Social Media Marketing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white text-sm mb-2">Popular</div>
+                            <h3 class="text-xl font-bold text-white">Social Media Marketing</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Engage your audience with compelling social media campaigns across all major platforms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3 -->
+            <div class="fade-in-up group">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1600672128287-09dae763c579?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZHZlcnRpc2luZyUyMGNhbXBhaWdufGVufDF8fHx8MTc1OTk4OTQ1Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="PPC Advertising" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-cyan-600 to-cyan-700 text-white text-sm mb-2">Trending</div>
+                            <h3 class="text-xl font-bold text-white">PPC Advertising</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Maximize ROI with data-driven pay-per-click campaigns that convert clicks into customers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4 -->
+            <div class="fade-in-up group">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1681230745734-4e59736c3660?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb250ZW50JTIwd3JpdGluZyUyMGNyZWF0aXZlfGVufDF8fHx8MTc1OTkxMzUzMXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Content Creation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-teal-600 to-emerald-700 text-white text-sm mb-2">Creative</div>
+                            <h3 class="text-xl font-bold text-white">Content Creation</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Tell your story with high-quality content that resonates with your target audience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 5 -->
+            <div class="fade-in-up group">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbWFpbCUyMG1hcmtldGluZyUyMG5ld3NsZXR0ZXJ8ZW58MXx8fHwxNzU5ODk2NjU4fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Email Marketing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-emerald-600 to-teal-700 text-white text-sm mb-2">Essential</div>
+                            <h3 class="text-xl font-bold text-white">Email Marketing</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Build lasting relationships with personalized email campaigns that drive conversions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 6 -->
+            <div class="fade-in-up group">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwYW5hbHl0aWNzJTIwZGFzaGJvYXJkfGVufDF8fHx8MTc1OTkyNzgyOXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Analytics & Reporting" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <div class="inline-block px-3 py-1 rounded-full bg-gradient-to-r from-cyan-600 to-teal-700 text-white text-sm mb-2">Data-Driven</div>
+                            <h3 class="text-xl font-bold text-white">Analytics & Reporting</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600">Make informed decisions with comprehensive analytics and actionable insights.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 via-teal-50 to-blue-50">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-4 gradient-text">Success Stories</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Real results for real businesses. See how we've helped clients achieve their goals.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="fade-in-up group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542744094-f77e9f7a10b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwbWFya2V0aW5nJTIwd29ya3NwYWNlfGVufDF8fHx8MTc1OTk3ODk3Nnww&ixlib=rb-4.1.0&q=80&w=1080" alt="E-Commerce Transformation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                        <div class="inline-flex self-start px-3 py-1 rounded-full bg-gradient-to-r from-teal-600 to-emerald-600 text-sm mb-3">
+                            SEO & PPC
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">E-Commerce Transformation</h3>
+                        <p class="text-sm opacity-90">300% increase in organic traffic</p>
+                    </div>
+
+                    <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="fade-in-up group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1666698809123-44e998e93f23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGFnZW5jeSUyMHRlYW18ZW58MXx8fHwxNzU5OTI4Mzk2fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Brand Awareness Campaign" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                        <div class="inline-flex self-start px-3 py-1 rounded-full bg-gradient-to-r from-cyan-600 to-teal-600 text-sm mb-3">
+                            Social Media
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Brand Awareness Campaign</h3>
+                        <p class="text-sm opacity-90">5M+ impressions in 3 months</p>
+                    </div>
+
+                    <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="fade-in-up group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300">
+                <div class="relative h-64 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHN1Y2Nlc3N8ZW58MXx8fHwxNzU5OTQzODEyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="SaaS Product Launch" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                    
+                    <div class="absolute inset-0 flex flex-col justify-end p-6 text-white">
+                        <div class="inline-flex self-start px-3 py-1 rounded-full bg-gradient-to-r from-emerald-600 to-teal-700 text-sm mb-3">
+                            Content Marketing
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">SaaS Product Launch</h3>
+                        <p class="text-sm opacity-90">1000+ qualified leads</p>
+                    </div>
+
+                    <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 fade-in-up">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-4 gradient-text">What Our Clients Say</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Don't just take our word for it - hear from businesses we've helped grow
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Testimonial 1 -->
+            <div class="fade-in-up">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg p-6 hover:shadow-xl hover:border-teal-200 transition-all duration-300 relative">
+                    <svg class="w-10 h-10 text-teal-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+
+                    <p class="text-gray-600 mb-6 italic">
+                        "Working with this team has been transformative for our business. Their strategic approach to digital marketing increased our revenue by 250% in just 6 months."
+                    </p>
+
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150" alt="Sarah Johnson" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <div class="font-medium">Sarah Johnson</div>
+                            <div class="text-sm text-gray-600">CEO, TechStart Inc.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="fade-in-up">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg p-6 hover:shadow-xl hover:border-teal-200 transition-all duration-300 relative">
+                    <svg class="w-10 h-10 text-teal-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+
+                    <p class="text-gray-600 mb-6 italic">
+                        "The ROI we've seen from their campaigns is incredible. Professional, creative, and always delivering beyond expectations."
+                    </p>
+
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150" alt="Michael Chen" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <div class="font-medium">Michael Chen</div>
+                            <div class="text-sm text-gray-600">Marketing Director, GlobalBrand</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="fade-in-up">
+                <div class="h-full bg-white border-2 border-gray-200 rounded-lg p-6 hover:shadow-xl hover:border-teal-200 transition-all duration-300 relative">
+                    <svg class="w-10 h-10 text-teal-200 mb-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                    </svg>
+                    
+                    <div class="flex gap-1 mb-4">
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                        <svg class="w-4 h-4 fill-yellow-400 text-yellow-400" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                    </div>
+
+                    <p class="text-gray-600 mb-6 italic">
+                        "From social media to SEO, they handle everything with expertise. Our online presence has never been stronger."
+                    </p>
+
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150" alt="Emily Rodriguez" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <div class="font-medium">Emily Rodriguez</div>
+                            <div class="text-sm text-gray-600">Founder, StyleHub</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <!-- Gradient Background -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-700 via-teal-600 to-emerald-600"></div>
+    
+    <!-- Animated patterns -->
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-pulse-slow"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full mix-blend-overlay filter blur-3xl animate-pulse-slow-delay-1"></div>
+    </div>
+
+    <div class="relative max-w-4xl mx-auto text-center">
+        <div class="fade-in-up">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white mb-6">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+                </svg>
+                <span class="text-sm font-medium">Limited Time Offer</span>
+            </div>
+            
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 text-white">
+                Ready to Transform<br />Your Digital Presence?
+            </h2>
+            
+            <p class="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+                Get a free digital marketing audit and discover how we can help your business grow. No strings attached.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="bg-white text-teal-600 hover:bg-gray-100 text-lg px-8 py-3 rounded-md transition-all flex items-center gap-2 group">
+                    Get Your Free Audit
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </button>
+                <button class="text-lg px-8 py-3 border-2 border-white text-white hover:bg-white/10 rounded-md transition-all">
+                    Schedule a Call
+                </button>
+            </div>
+
+            <p class="text-sm text-white/70 mt-6">
+                Join 500+ businesses that trust us with their digital marketing
+            </p>
+        </div>
+    </div>
+</section>
+{% endif %}

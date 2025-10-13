@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django_json_widget',
     'website',
+    'new',
 ]
 
 MIDDLEWARE = [
