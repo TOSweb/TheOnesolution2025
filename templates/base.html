@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The One Solution - Digital Marketing Agency</title>
+    <title>{% block title %}{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    {% block head %}
+    {% endblock %}
     <style>
         @keyframes pulse-slow {
             0%, 100% { opacity: 0.7; }
@@ -53,6 +55,50 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+        /* Global link styles for CMS content */
+        a {
+            font-weight: 600;
+            color: #059669;
+            text-decoration: underline;
+            text-decoration-color: #059669;
+            text-underline-offset: 3px;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #047857;
+            text-decoration-color: #047857;
+        }
+
+        /* Exception for navigation links - they'll use their own styling */
+        .nav-link {
+            font-weight: 400;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            text-decoration: none;
+        }
+
+        /* Exception for navigation when active */
+        .nav-link.active {
+            font-weight: 700;
+            color: #059669;
+            text-decoration: underline;
+            text-decoration-color: #059669;
+            text-underline-offset: 4px;
+        }
+
+        /* Exception for logo and other special links */
+        .no-link-style {
+            font-weight: inherit;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .no-link-style:hover {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-white text-gray-900">
@@ -63,7 +109,7 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold gradient-text">DigitalVibe</h1>
+                    <h1 class="text-2xl font-bold gradient-text">The One Solution</h1>
                 </div>
 
                 <!-- Desktop Navigation -->
@@ -109,10 +155,9 @@
             </div>
         </div>
     </nav>
-    {% block content %}
-
-    {% endif %}
     
+    {% block content %}
+    {% endblock %}
 
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">

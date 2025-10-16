@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
     'django_json_widget',
-    'website',
+    #'website',
     'new',
 ]
 
