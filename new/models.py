@@ -26,7 +26,7 @@ class Home(models.Model):
 
 class AlternateHome(models.Model):
     home = models.ForeignKey(Home, on_delete=models.CASCADE)
-    rel = models.CharField(max_length=200, null=True, blank=True)
+    href_lang = models.CharField(max_length=200, null=True, blank=True)
     link = models.URLField()
 
     def __str__(self):
@@ -101,6 +101,7 @@ class Service(models.Model):
     alt = models.CharField(max_length=1000)
     small_description = models.TextField()
     content = models.TextField()
+    order = models.PositiveIntegerField(default=0, help_text="Order of display (lower numbers appear first)")
     #SEO
     title = models.CharField(max_length=200)
     meta_description = models.TextField()
@@ -113,6 +114,9 @@ class Service(models.Model):
     og_description = models.TextField()
     og_site_name = models.TextField()
     slug = models.SlugField(unique=True)
+    
+    class Meta:
+        ordering = ['order', 'heading']
     
     def __str__(self):
         return self.heading
@@ -128,7 +132,7 @@ class ServiceContent(models.Model):
 
 
 class ServiceVariant(models.Model):
-    service_category = models.ForeignKey(ServiceCategory, on_delete=models.CASCADE)
+    service_category = models.ForeignKey(Service, on_delete=models.CASCADE)
     heading = models.CharField(max_length=300)
     image_m = models.ImageField(upload_to='image_m/')
     image_t = models.ImageField(upload_to='image_t/')
@@ -136,6 +140,7 @@ class ServiceVariant(models.Model):
     alt = models.CharField(max_length=1000)
     small_description = models.TextField()
     content = models.TextField()
+    order = models.PositiveIntegerField(default=0, help_text="Order of display (lower numbers appear first)")
     #SEO
     title = models.CharField(max_length=200)
     meta_description = models.TextField(blank=True, null=True)
@@ -149,6 +154,9 @@ class ServiceVariant(models.Model):
     og_site_name = models.TextField(blank=True, null=True)
     canonical_url = models.URLField(blank=True, null=True, help_text="Preferred URL for this page")
     slug = models.SlugField(unique=True)
+
+    class Meta:
+        ordering = ['order', 'heading']
 
     def __str__(self):
         return self.heading

@@ -1,5 +1,7 @@
 asgiref==3.9.1
 Django==5.2.5
+django-hosts==7.0.0
 django-json-widget==2.0.3
+django-tinymce==4.1.0
 pillow==11.3.0
 sqlparse==0.5.3

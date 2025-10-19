@@ -116,10 +116,15 @@ class AlternateHomeInline(admin.TabularInline):
     extra = 1
 
 
-class ServiceCategoryContentInline(admin.TabularInline):
+class ServiceCategoryContentInline(admin.StackedInline):
     model = ServiceCategoryContent
     form = ServiceCategoryContentInlineForm
     extra = 1
+    fieldsets = (
+        (None, {
+            'fields': ('image_m', 'image_t', 'image_d', 'content', 'youtube_video_embed')
+        }),
+    )
 
 
 class ServiceContentInline(admin.TabularInline):
@@ -239,14 +244,16 @@ class ServiceCategoryAdmin(admin.ModelAdmin):
 class ServiceAdmin(admin.ModelAdmin):
     form = ServiceAdminForm
     inlines = [ServiceContentInline]
-    list_display = ['heading', 'service_category', 'slug']
-    list_filter = ['service_category']
+    list_display = ['heading', 'service_category', 'order', 'slug']
+    list_filter = ['service_category', 'order']
     search_fields = ['heading', 'slug']
     prepopulated_fields = {'slug': ('heading',)}
+    list_editable = ['order']
+    ordering = ['service_category', 'order', 'heading']
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('service_category', 'heading', 'slug', 'small_description', 'content')
+            'fields': ('service_category', 'heading', 'slug', 'small_description', 'content', 'order')
         }),
         ('Images', {
             'fields': ('image_m', 'image_t', 'image_d', 'alt')
@@ -273,14 +280,16 @@ class ServiceAdmin(admin.ModelAdmin):
 class ServiceVariantAdmin(admin.ModelAdmin):
     form = ServiceVariantAdminForm
     inlines = [ServiceVariantContentInline]
-    list_display = ['heading', 'service_category', 'slug']
-    list_filter = ['service_category']
+    list_display = ['heading', 'service_category', 'order', 'slug']
+    list_filter = ['service_category', 'order']
     search_fields = ['heading', 'slug']
     prepopulated_fields = {'slug': ('heading',)}
+    list_editable = ['order']
+    ordering = ['service_category', 'order', 'heading']
     
     fieldsets = (
         ('Basic Information', {
-            'fields': ('service_category', 'heading', 'slug', 'small_description', 'content')
+            'fields': ('service_category', 'heading', 'slug', 'small_description', 'content', 'order')
         }),
         ('Images', {
             'fields': ('image_m', 'image_t', 'image_d', 'alt')
