@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Home, AlternateHome, ServiceCategory, Service, ServiceVariant, ServiceContent, ServiceCategoryContent
+from .models import Home, AlternateHome, About, ServiceCategory, Service, ServiceVariant, ServiceContent, ServiceCategoryContent, ServiceVariantContent
 
 # Create your views here.
 def home(request):
@@ -8,7 +8,7 @@ def home(request):
     # Get services to display on homepage (limit to 3 for grid layout)
     # Only query the fields we actually use in the template
     services = ServiceCategory.objects.only(
-        'heading', 'small_description', 'image_d', 'alt', 'slug'
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug'
     )[:3]
     return render(request, 'index.html', {
         'home': home, 
@@ -20,7 +20,7 @@ def service_category_detail(request, slug):
     # Get the service category with optimized query
     service_category = get_object_or_404(
         ServiceCategory.objects.only(
-            'heading', 'small_description', 'content', 'image_d', 'alt',
+            'heading', 'small_description', 'content', 'image_m', 'image_t', 'image_d', 'alt',
             'title', 'meta_description', 'meta_keywords', 'og_title', 
             'og_description', 'og_image', 'slug'
         ), 
@@ -31,14 +31,14 @@ def service_category_detail(request, slug):
     services = Service.objects.filter(
         service_category=service_category
     ).only(
-        'heading', 'small_description', 'image_d', 'alt', 'slug', 'order'
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug', 'order'
     ).order_by('order', 'heading')
     
     # Get service variants belonging to services in this category (ordered by order field)
     service_variants = ServiceVariant.objects.filter(
         service_category__service_category=service_category
     ).select_related('service_category').only(
-        'heading', 'small_description', 'image_d', 'alt', 'slug', 'order',
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug', 'order',
         'service_category__heading', 'service_category__slug'
     ).order_by('order', 'heading')
     
@@ -53,7 +53,7 @@ def service_category_detail(request, slug):
     related_categories = ServiceCategory.objects.exclude(
         id=service_category.id
     ).only(
-        'heading', 'small_description', 'image_d', 'alt', 'slug'
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug'
     )[:3]
     
     context = {
@@ -70,7 +70,7 @@ def service_detail(request, slug):
     # Get the service with optimized query
     service = get_object_or_404(
         Service.objects.select_related('service_category').only(
-            'heading', 'small_description', 'content', 'image_d', 'alt',
+            'heading', 'small_description', 'content', 'image_m', 'image_t', 'image_d', 'alt',
             'title', 'meta_description', 'meta_keywords', 'og_title', 
             'og_description', 'og_image', 'slug', 'schema',
             'service_category__heading', 'service_category__slug'
@@ -89,7 +89,7 @@ def service_detail(request, slug):
     service_variants = ServiceVariant.objects.filter(
         service_category=service
     ).only(
-        'heading', 'small_description', 'image_d', 'alt', 'slug', 'order'
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug', 'order'
     ).order_by('order', 'heading')
     
     # Get related services from the same category (excluding current service)
@@ -98,14 +98,14 @@ def service_detail(request, slug):
     ).exclude(
         id=service.id
     ).only(
-        'heading', 'small_description', 'image_d', 'alt', 'slug'
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug'
     ).order_by('order', 'heading')[:3]
     
     # Get other services from different categories
     other_services = Service.objects.exclude(
         service_category=service.service_category
     ).only(
-        'heading', 'small_description', 'image_d', 'alt', 'slug',
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug',
         'service_category__heading'
     ).select_related('service_category')[:3]
     
@@ -118,3 +118,53 @@ def service_detail(request, slug):
     }
     
     return render(request, 'service_detail.html', context)
+
+def service_variant_detail(request, slug):
+    # Get the service variant with optimized query
+    service_variant = get_object_or_404(
+        ServiceVariant.objects.select_related('service_category__service_category').only(
+            'heading', 'small_description', 'content', 'image_m', 'image_t', 'image_d', 'alt',
+            'title', 'meta_description', 'meta_keywords', 'og_title', 
+            'og_description', 'og_image', 'slug', 'schema', 'canonical_url',
+            'service_category__heading', 'service_category__slug',
+            'service_category__service_category__heading', 'service_category__service_category__slug'
+        ), 
+        slug=slug
+    )
+    
+    # Get service variant content (additional content blocks)
+    service_variant_contents = ServiceVariantContent.objects.filter(
+        service_variant=service_variant
+    ).only(
+        'image_m', 'image_t', 'image_d', 'content', 'youtube_video_embed'
+    )
+    
+    # Get related service variants from the same service (excluding current variant)
+    related_variants = ServiceVariant.objects.filter(
+        service_category=service_variant.service_category
+    ).exclude(
+        id=service_variant.id
+    ).only(
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug'
+    ).order_by('order', 'heading')[:3]
+    
+    # Get other service variants from different services
+    other_variants = ServiceVariant.objects.exclude(
+        service_category=service_variant.service_category
+    ).only(
+        'heading', 'small_description', 'image_m', 'image_t', 'image_d', 'alt', 'slug',
+        'service_category__heading'
+    ).select_related('service_category')[:3]
+    
+    context = {
+        'service_variant': service_variant,
+        'service_variant_contents': service_variant_contents,
+        'related_variants': related_variants,
+        'other_variants': other_variants,
+    }
+    
+    return render(request, 'service_variant_detail.html', context)
+
+def about(request):
+    about = About.objects.first()
+    return render(request, 'about.html', {'about': about})

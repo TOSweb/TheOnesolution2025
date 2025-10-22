@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+#  Create your models here.
 
 class Home(models.Model):
     title = models.CharField(max_length=200)
@@ -128,8 +127,6 @@ class ServiceContent(models.Model):
     image_d = models.ImageField(upload_to='image_d/', blank=True)
     content = models.TextField(blank=True)
     youtube_video_embed = models.URLField(blank=True)
-
-
 
 class ServiceVariant(models.Model):
     service_category = models.ForeignKey(Service, on_delete=models.CASCADE)

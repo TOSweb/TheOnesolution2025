@@ -110,7 +110,11 @@
                 <div class="h-full bg-white border-2 border-gray-200 rounded-lg overflow-hidden hover:shadow-xl hover:border-teal-200 transition-all duration-300">
                     <div class="relative h-48 overflow-hidden">
                         {% if service.image_d %}
-                            <img src="{{ service.image_m.url }}" alt="{{ service.alt }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            <picture>
+                                <source media="(max-width: 640px)" srcset="{{ service.image_m.url }}">
+                                <source media="(max-width: 1024px)" srcset="{{ service.image_t.url }}">
+                                <img src="{{ service.image_d.url }}" alt="{{ service.alt }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                            </picture>
                         {% else %}
                             <div class="w-full h-full bg-gradient-to-br from-teal-100 to-emerald-100 flex items-center justify-center">
                                 <svg class="w-16 h-16 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

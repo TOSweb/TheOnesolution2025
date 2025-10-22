@@ -1,0 +1,173 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ about.title }}
+{% endblock %}
+{% block head %}
+    <meta name="description" content="{{ about.meta_description }}">
+    <meta name="keywords" content="{{ about.meta_keywords }}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ about.og_title }}">
+    <meta property="og:type" content="{{ about.og_type }}">
+    <meta property="og:url" content="{{ about.og_url }}">
+    <meta property="og:image" content="{{ about.og_image }}">
+    <meta property="og:description" content="{{ about.og_description }}">
+    <meta property="og:site_name" content="{{ about.og_site_name }}">
+    
+    <!-- Structured Data (Schema.org) -->
+    {% if about.schema %}
+    <script type="application/ld+json">
+        {{ about.schema|safe }}
+    </script>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-16">
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-teal-50 to-blue-50"></div>
+    
+    {% if about.image_d %}
+    <div class="absolute inset-0">
+        <picture>
+            {% if about.image_m %}<source media="(max-width: 640px)" srcset="{{ about.image_m.url }}">{% endif %}
+            {% if about.image_t %}<source media="(max-width: 1024px)" srcset="{{ about.image_t.url }}">{% endif %}
+            <img src="{{ about.image_d.url }}" alt="{% if about.alt %}{{ about.alt }}{% else %}{{ about.heading }}{% endif %}" 
+                 class="w-full h-full object-cover opacity-30">
+        </picture>
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-900/90 to-emerald-900/70"></div>
+    </div>
+    {% endif %}
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <div class="fade-in-up">
+            {% if about.heading %}
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 gradient-text">
+                {{ about.heading }}
+            </h1>
+            {% endif %}
+            {% if about.small_description %}
+            <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+                {{ about.small_description }}
+            </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+{% if about.content %}
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+    <div class="max-w-4xl mx-auto">
+        <div class="prose prose-lg max-w-none">
+            {{ about.content|safe }}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Vision & Mission -->
+{% if about.vision or about.mission %}
+<section class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 {% if about.vision and about.mission %}md:grid-cols-2{% endif %} gap-12">
+            {% if about.vision %}
+            <div class="fade-in-up">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold mb-6 gradient-text">Our Vision</h2>
+                    <div class="prose prose-lg">
+                        {{ about.vision|safe }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if about.mission %}
+            <div class="fade-in-up">
+                <div class="bg-white rounded-2xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold mb-6 gradient-text">Our Mission</h2>
+                    <div class="prose prose-lg">
+                        {{ about.mission|safe }}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Custom Styles -->
+<style>
+    .gradient-text {
+        background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .fade-in-up {
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+        color: #1f2937;
+        font-weight: 700;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .prose h1 { font-size: 2.25rem; }
+    .prose h2 { font-size: 1.875rem; }
+    .prose h3 { font-size: 1.5rem; }
+    .prose h4 { font-size: 1.25rem; }
+    
+    .prose p {
+        margin-bottom: 1.5rem;
+        line-height: 1.75;
+        color: #4b5563;
+    }
+    
+    .prose ul, .prose ol {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
+    
+    .prose li {
+        margin-bottom: 0.5rem;
+        color: #4b5563;
+    }
+    
+    .prose blockquote {
+        border-left: 4px solid #0d9488;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: #6b7280;
+    }
+    
+    .prose strong {
+        font-weight: 600;
+        color: #1f2937;
+    }
+    
+    .prose a {
+        color: #0d9488;
+        text-decoration: underline;
+    }
+    
+    .prose a:hover {
+        color: #059669;
+    }
+</style>
+{% endblock %}
