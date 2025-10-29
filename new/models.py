@@ -19,6 +19,7 @@ class Home(models.Model):
     og_description = models.TextField()
     og_site_name = models.TextField()
     canonical_url = models.URLField(blank=True, null=True, help_text="Preferred URL for this page")
+    slug = models.SlugField(unique=True, default="")
 
     def __str__(self):
         return self.heading
@@ -59,6 +60,7 @@ class About(models.Model):
         return self.heading
     
 class ServiceCategory(models.Model):
+    home = models.ForiegnKey(Home, on_delete=models.CASCADE, related_name="country")
     heading = models.CharField(max_length=300)
     image_m = models.ImageField(upload_to='image_m/')
     image_t = models.ImageField(upload_to='image_t/')
